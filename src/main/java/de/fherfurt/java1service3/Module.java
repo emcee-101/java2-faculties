@@ -13,6 +13,24 @@ public class Module {
     private String urlDescriptionDocument;
     private ModuleCertificationType typeOfCertification;
 
+    /*
+    Additional Functions to be implemented:
+        addProfessor()
+        removeProfessor()
+
+    */
+
+    public Module(String name, int semester, String[] professor, ModuleType typeOfModule, String urlDescriptionDocument, ModuleCertificationType typeOfCertification){
+
+        this.name = name;
+        this.semester = semester;
+        this.professor = professor;
+        this.typeOfModule = typeOfModule;
+        this.urlDescriptionDocument = urlDescriptionDocument;
+        this.typeOfCertification = typeOfCertification;
+
+    };
+
 
     public String getName(){
 
@@ -50,23 +68,44 @@ public class Module {
 
     };
 
-    public void setURLDescriptionDocuemnt(String newURL){
 
-        urlDescriptionDocument = newURL;
+    public void setName(String name){
+
+        this.name = name;
 
     };
 
+    public void setSemester(int semester){
 
-    public Module(String name, int semester, String[] professor, ModuleType typeOfModule, String urlDescriptionDocument, ModuleCertificationType typeOfCertification){
-
-        this.name = name;
         this.semester = semester;
+
+    };
+
+    public void setProfessor(String[] professor){
+
         this.professor = professor;
+
+    }
+
+    public void setModuleType (ModuleType typeOfModule){
+
         this.typeOfModule = typeOfModule;
-        this.urlDescriptionDocument = urlDescriptionDocument;
+
+    };
+
+    public void setURLDescriptionDocument(String newURL){
+
+        this.urlDescriptionDocument = newURL;
+
+    };
+
+    public void setModuleCertificationType (ModuleCertificationType typeOfCertification){
+
         this.typeOfCertification = typeOfCertification;
 
     };
+
+
 
 
 
