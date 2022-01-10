@@ -11,6 +11,7 @@ public class Faculty {
     private String decan;
     private String name;
     private String[] courses;
+
     public static void main(String[] args) {
         System.out.println("hello world!");
     }
