@@ -11,7 +11,7 @@ public class Person {
 
     private String name;
     private String mail;
-    private Int phNumber;
+    private int phNumber;
     private String role;
 
 
@@ -31,7 +31,7 @@ public class Person {
         this.mail = mail;
     }
 
-    public Int getPhNumber() {
+    public int getPhNumber() {
         return phNumber;
     }
 
