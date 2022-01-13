@@ -2,7 +2,7 @@ package de.fherfurt.java1service3;
 
 public class Person {
 
-    public Faculty(String name, String mail, Int phNumber, String role) {
+    public Person(String name, String mail, Int phNumber, String role) {
         this.name = name;
         this.mail = mail;
         this.phNumber = phNumber;
@@ -35,7 +35,7 @@ public class Person {
         return phNumber;
     }
 
-    public void setPhNumber(Int phNumber) {
+    public void setPhNumber(int phNumber) {
         this.phNumber = phNumber;
     }
 
