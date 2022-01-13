@@ -10,39 +10,62 @@ public class Course {
     private CourseType typeOfCourse;
     private String director;
     private String[] modules;
-}
 
-    private String getName() {
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Course(String name, int numberOfSemesters, float numerusClausus, CourseType typeOfCourse, String director, String[] modules) {
+        this.name = name;
+        this.numberOfSemesters = numberOfSemesters;
+        this.numerusClausus = numerusClausus;
+        this.typeOfCourse = typeOfCourse;
+        this.director = director;
+        this.modules = modules;
+    }
+
+    public String getName() {
         return name;
     }
 
-    private int getNumberOfSemesters() {
+    public int getNumberOfSemesters() {
         return numberOfSemesters;
     }
 
-    private float getNumerusClausus() {
+    public void setNumberOfSemesters(int numberOfSemesters) {
+        this.numberOfSemesters = numberOfSemesters;
+    }
+
+    public float getNumerusClausus() {
         return numerusClausus;
     }
 
-    private CourseType getTypeOfCourse() {
+    public void setNumerusClausus(float numerusClausus) {
+        this.numerusClausus = numerusClausus;
+    }
+
+    public CourseType getTypeOfCourse() {
         return typeOfCourse;
     }
 
-    private String getDirector() {
+    public void setTypeOfCourse(CourseType typeOfCourse) {
+        this.typeOfCourse = typeOfCourse;
+    }
+
+    public String getDirector() {
         return director;
     }
 
-    private void setName(String) {
-
+    public void setDirector(String director) {
+        this.director = director;
     }
 
-    private void setNumberOfSemesters (int nOS) {
-        nOS = numberOfSemesters;
+    public String[] getModules() {
+        return modules;
     }
 
-    private void setNumerusClausus (float NC) {
-        NC = numerusClausus;
+    public void setModules(String[] modules) {
+        this.modules = modules;
     }
-
-
 }
