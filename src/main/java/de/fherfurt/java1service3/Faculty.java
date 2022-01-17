@@ -1,4 +1,5 @@
 package de.fherfurt.java1service3;
+import java.util.*;
 
 public class Faculty {
 
@@ -10,7 +11,7 @@ public class Faculty {
 
     private Person decan;
     private String name;
-    private Course[] courses;
+    private List<Course> courses;
 
     public static void main(String[] args) {
         System.out.println("hello world!");
@@ -32,11 +33,11 @@ public class Faculty {
         this.name = name;
     }
 
-    public Course[] getCourses() {
+    public List<Course> getCourses() {
         return courses;
     }
 
-    public void setCourses(Course[] courses) {
-        this.courses = courses;
+    public void addCourses(Course course) {
+        this.courses.add(course);
     }
 }
