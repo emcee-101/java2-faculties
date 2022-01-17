@@ -8,15 +8,15 @@ public class Course {
     private int numberOfSemesters;
     private float numerusClausus;
     private CourseType typeOfCourse;
-    private String director;
-    private String[] modules;
+    private Person director;
+    private Module[] modules;
 
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public Course(String name, int numberOfSemesters, float numerusClausus, CourseType typeOfCourse, String director, String[] modules) {
+    public Course(String name, int numberOfSemesters, float numerusClausus, CourseType typeOfCourse, Person director, Module[] modules) {
         this.name = name;
         this.numberOfSemesters = numberOfSemesters;
         this.numerusClausus = numerusClausus;
@@ -24,6 +24,15 @@ public class Course {
         this.director = director;
         this.modules = modules;
     }
+
+    /*
+     additional functions to add: addDirector(), removeDirector()   change function
+                                  addNC(), removeNC()
+                                  addTOC(), removeTOC()
+                                  changeName()
+                                  addNOS(), removeNOS()
+
+    */
 
     public String getName() {
         return name;
@@ -53,19 +62,19 @@ public class Course {
         this.typeOfCourse = typeOfCourse;
     }
 
-    public String getDirector() {
+    public Person getDirector() {
         return director;
     }
 
-    public void setDirector(String director) {
+    public void setDirector(Person director) {
         this.director = director;
     }
 
-    public String[] getModules() {
+    public Module[] getModules() {
         return modules;
     }
 
-    public void setModules(String[] modules) {
+    public void setModules(Module[] modules) {
         this.modules = modules;
     }
 }
