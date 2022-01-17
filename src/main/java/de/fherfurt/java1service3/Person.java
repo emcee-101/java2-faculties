@@ -2,7 +2,7 @@ package de.fherfurt.java1service3;
 
 public class Person {
 
-    public Person(String name, String mail, Int phNumber, String role) {
+    public Person(String name, String mail, int phNumber, String role) {
         this.name = name;
         this.mail = mail;
         this.phNumber = phNumber;
