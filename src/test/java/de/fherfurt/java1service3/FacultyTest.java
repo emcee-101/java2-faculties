@@ -16,7 +16,6 @@ class FacultyTest {
         // when
         String result = test.getDecan();
 
-
         // then
         Assertions.assertSame("dekan", result);
     }

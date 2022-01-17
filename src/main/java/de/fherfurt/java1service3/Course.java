@@ -3,14 +3,12 @@ package de.fherfurt.java1service3;
 import de.fherfurt.java1service3.enums.CourseType;
 
 public class Course {
-
     private String name;
     private int numberOfSemesters;
     private float numerusClausus;
     private CourseType typeOfCourse;
     private String director;
     private String[] modules;
-
 
     public void setName(String name) {
         this.name = name;
