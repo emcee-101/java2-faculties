@@ -2,25 +2,20 @@ package de.fherfurt.java1service3;
 
 import de.fherfurt.java1service3.enums.ModuleCertificationType;
 import de.fherfurt.java1service3.enums.ModuleType;
+import java.util.*;
 
 public class Module {
 
 
     private String name;
     private int semester;
-    private String[] professor;
+    private List<Person> professor;
     private ModuleType typeOfModule;
     private String urlDescriptionDocument;
     private ModuleCertificationType typeOfCertification;
 
-    /*
-    Additional Functions to be implemented:
-        addProfessor()
-        removeProfessor()
 
-    */
-
-    public Module(String name, int semester, String[] professor, ModuleType typeOfModule, String urlDescriptionDocument, ModuleCertificationType typeOfCertification){
+    public Module(String name, int semester, List<Person> professor, ModuleType typeOfModule, String urlDescriptionDocument, ModuleCertificationType typeOfCertification){
 
         this.name = name;
         this.semester = semester;
@@ -31,6 +26,27 @@ public class Module {
 
     };
 
+
+    // Add a Professor to the list of People overseeing this specific Module
+    public void addProfessor(Person newProfessor){
+
+        this.professor.add(newProfessor);
+
+    };
+
+    // Remove a Professor from the list of People overseeing this specific Module
+    public void removeProfessor(Person oldProfessor){
+
+        this.professor.remove(oldProfessor);
+
+    };
+
+    // Remove a Professor from the list of People overseeing this specific Module
+    public void removeProfessor(int oldProfessorPlaceInList){
+
+        this.professor.remove(oldProfessorPlaceInList-1);
+
+    };
 
     public String getName(){
 
@@ -44,7 +60,7 @@ public class Module {
 
     };
 
-    public String[] getProf(){
+    public List<Person> getProf(){
 
         return professor;
 
@@ -81,7 +97,7 @@ public class Module {
 
     };
 
-    public void setProfessor(String[] professor){
+    public void setProfessor(List<Person> professor){
 
         this.professor = professor;
 
