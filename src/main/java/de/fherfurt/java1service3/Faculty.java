@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Faculty {
 
-    public Faculty(Person decan, String name, Course[] courses) {
+    public Faculty(Person decan, String name, List<Course> courses) {
         this.decan = decan;
         this.name = name;
         this.courses = courses;
