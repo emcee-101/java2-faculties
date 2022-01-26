@@ -5,48 +5,39 @@ import de.fherfurt.java1service3.enums.ModuleType;
 import java.util.*;
 
 public class Module {
-
-
     private String name;
     private int semester;
-    private List<Person> professor;
+    private List<String> professorNames;
     private ModuleType typeOfModule;
     private String urlDescriptionDocument;
     private ModuleCertificationType typeOfCertification;
+    private String courseName;
 
-
-    public Module(String name, int semester, List<Person> professor, ModuleType typeOfModule, String urlDescriptionDocument, ModuleCertificationType typeOfCertification){
+    public Module(String name,
+                  int semester,
+                  List<String> professorNames,
+                  ModuleType typeOfModule,
+                  String urlDescriptionDocument,
+                  ModuleCertificationType typeOfCertification,
+                  String courseName){
 
         this.name = name;
         this.semester = semester;
-        this.professor = professor;
+        this.professorNames = professorNames;
         this.typeOfModule = typeOfModule;
         this.urlDescriptionDocument = urlDescriptionDocument;
         this.typeOfCertification = typeOfCertification;
+        this.courseName = courseName;
 
     };
 
+    public String getCourseName() {
+        return courseName;
+    }
 
-    // Add a Professor to the list of People overseeing this specific Module
-    public void addProfessor(Person newProfessor){
-
-        this.professor.add(newProfessor);
-
-    };
-
-    // Remove a Professor from the list of People overseeing this specific Module
-    public void removeProfessor(Person oldProfessor){
-
-        this.professor.remove(oldProfessor);
-
-    };
-
-    // Remove a Professor from the list of People overseeing this specific Module
-    public void removeProfessor(int oldProfessorPlaceInList){
-
-        this.professor.remove(oldProfessorPlaceInList-1);
-
-    };
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
 
     public String getName(){
 
@@ -57,12 +48,6 @@ public class Module {
     public int getSemester(){
 
         return semester;
-
-    };
-
-    public List<Person> getProf(){
-
-        return professor;
 
     };
 
@@ -97,12 +82,6 @@ public class Module {
 
     };
 
-    public void setProfessor(List<Person> professor){
-
-        this.professor = professor;
-
-    }
-
     public void setModuleType (ModuleType typeOfModule){
 
         this.typeOfModule = typeOfModule;
@@ -121,8 +100,11 @@ public class Module {
 
     };
 
+    public List<String> getProfessorNames() {
+        return professorNames;
+    }
 
-
-
-
+    public void setProfessorNames(List<String> professorNames) {
+        this.professorNames = professorNames;
+    }
 }

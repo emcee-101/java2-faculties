@@ -2,25 +2,28 @@ package de.fherfurt.java1service3;
 
 import de.fherfurt.java1service3.enums.CourseType;
 
+import java.util.*;
+
 public class Course {
     private String name;
     private int numberOfSemesters;
     private float numerusClausus;
     private CourseType typeOfCourse;
-    private Person director;
-    private Module[] modules;
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Course(String name, int numberOfSemesters, float numerusClausus, CourseType typeOfCourse, Person director, Module[] modules) {
+    private String directorName;
+    private String facultyName;
+    
+    public Course(String name,
+                  int numberOfSemesters,
+                  float numerusClausus,
+                  CourseType typeOfCourse,
+                  String directorName,
+                  String facultyName) {
         this.name = name;
         this.numberOfSemesters = numberOfSemesters;
         this.numerusClausus = numerusClausus;
         this.typeOfCourse = typeOfCourse;
-        this.director = director;
-        this.modules = modules;
+        this.directorName = directorName;
+        this.facultyName = facultyName;
     }
 
     /*
@@ -38,6 +41,18 @@ public class Course {
 
     public int getNumberOfSemesters() {
         return numberOfSemesters;
+    }
+
+    public String getDirectorName() {
+        return directorName;
+    }
+
+    public void setDirectorName(String directorName) {
+        this.directorName = directorName;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setNumberOfSemesters(int numberOfSemesters) {
@@ -60,19 +75,11 @@ public class Course {
         this.typeOfCourse = typeOfCourse;
     }
 
-    public Person getDirector() {
-        return director;
+    public String getFacultyName() {
+        return facultyName;
     }
 
-    public void setDirector(Person director) {
-        this.director = director;
-    }
-
-    public Module[] getModules() {
-        return modules;
-    }
-
-    public void setModules(Module[] modules) {
-        this.modules = modules;
+    public void setFacultyName(String facultyName) {
+        this.facultyName = facultyName;
     }
 }

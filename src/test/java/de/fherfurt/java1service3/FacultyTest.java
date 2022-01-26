@@ -10,13 +10,12 @@ class FacultyTest {
     @Test
     void getDecan() {
         // given
-        String[] myString = {"netze", "gwp"};
-        Faculty test = new Faculty("dekan", "ai", myString);
+        Faculty test = new Faculty("dekan", "ai", "testUni");
 
         // when
-        String result = test.getDecan();
+        String result = test.getUniversityName();
 
         // then
-        Assertions.assertSame("dekan", result);
+        Assertions.assertSame("testUni", result);
     }
 }
