@@ -1,4 +1,4 @@
-package de.fherfurt.java1service3;
+package de.fherfurt.java1service3.data.classes;
 
 import java.util.*;
 

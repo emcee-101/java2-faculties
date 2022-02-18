@@ -1,7 +1,7 @@
-package de.fherfurt.java1service3;
+package de.fherfurt.java1service3.data.classes;
 
-import de.fherfurt.java1service3.enums.ModuleCertificationType;
-import de.fherfurt.java1service3.enums.ModuleType;
+import de.fherfurt.java1service3.data.classes.enums.ModuleCertificationType;
+import de.fherfurt.java1service3.data.classes.enums.ModuleType;
 import java.util.*;
 
 public class Module {
