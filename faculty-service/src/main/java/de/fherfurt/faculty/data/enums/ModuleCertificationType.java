@@ -1,4 +1,4 @@
-package de.fherfurt.java1service3.data.classes.enums;
+package de.fherfurt.faculty.data.enums;
 
 public enum ModuleCertificationType {
 

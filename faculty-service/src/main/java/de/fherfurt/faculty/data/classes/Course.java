@@ -1,6 +1,6 @@
-package de.fherfurt.java1service3.data.classes;
+package de.fherfurt.faculty.data.classes;
 
-import de.fherfurt.java1service3.data.classes.enums.CourseType;
+import de.fherfurt.faculty.data.enums.CourseType;
 
 public class Course {
     private String name;
