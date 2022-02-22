@@ -8,12 +8,9 @@ import de.fherfurt.faculty.data.classes.University;
 import java.util.*;
 
 public class Controller {
-
-
     // Listen
     List<University> universities;
     List<Faculty> faculties;
     List<Course> courses;
     List<Module> modules;
-
 }
