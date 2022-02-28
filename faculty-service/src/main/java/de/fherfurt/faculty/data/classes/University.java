@@ -1,24 +1,16 @@
 package de.fherfurt.faculty.data.classes;
 
+import de.fherfurt.faculty.data.classes.core.Basic;
+
 import java.util.*;
 
-public class University {
-
-    private String name;
+public class University extends Basic {
 
     private String presidentName;
 
     public University(String name, String presidentName){
-        this.name=name;
+        super(name);
         this.presidentName=presidentName;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPresidentName() {

@@ -1,29 +1,18 @@
 package de.fherfurt.faculty.data.classes;
+import de.fherfurt.faculty.data.classes.core.Basic;
+
 import java.util.*;
 
-public class Faculty {
+public class Faculty extends Basic {
 
     public Faculty(String decanName, String name, String universityName) {
+        super(name);
         this.decanName = decanName;
-        this.name = name;
         this.universityName = universityName;
     }
 
     private String decanName;
-    private String name;
     private String universityName;
-
-    public String getUniversityName() {
-        return universityName;
-    }
-
-    public void setUniversityName(String universityName) {
-        this.universityName = universityName;
-    }
-
-    public static void main(String[] args) {
-        System.out.println("hello world!");
-    }
 
     public String getDecanName() {
         return decanName;
@@ -33,11 +22,11 @@ public class Faculty {
         this.decanName = decanName;
     }
 
-    public String getName() {
-        return name;
+    public String getUniversityName() {
+        return universityName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUniversityName(String universityName) {
+        this.universityName = universityName;
     }
 }

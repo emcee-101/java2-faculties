@@ -1,11 +1,11 @@
 package de.fherfurt.faculty.data.classes;
 
-import de.fherfurt.java1service3.data.classes.enums.ModuleCertificationType;
-import de.fherfurt.java1service3.data.classes.enums.ModuleType;
+import de.fherfurt.faculty.data.classes.core.Basic;
+import de.fherfurt.faculty.data.classes.enums.ModuleCertificationType;
+import de.fherfurt.faculty.data.classes.enums.ModuleType;
 import java.util.*;
 
-public class Module {
-    private String name;
+public class Module extends Basic {
     private int semester;
     private List<String> professorNames;
     private ModuleType typeOfModule;
@@ -21,7 +21,7 @@ public class Module {
                   ModuleCertificationType typeOfCertification,
                   String courseName){
 
-        this.name = name;
+        super(name);
         this.semester = semester;
         this.professorNames = professorNames;
         this.typeOfModule = typeOfModule;
@@ -31,74 +31,13 @@ public class Module {
 
     };
 
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
-    }
-
-    public String getName(){
-
-        return name;
-
-    };
-
-    public int getSemester(){
-
+    public int getSemester() {
         return semester;
+    }
 
-    };
-
-    public ModuleType getType(){
-
-        return typeOfModule;
-
-    };
-
-    public String getURLDescriptionDocument(){
-
-        return urlDescriptionDocument;
-
-    };
-
-    public ModuleCertificationType getTypeOfCertification(){
-
-        return typeOfCertification;
-
-    };
-
-
-    public void setName(String name){
-
-        this.name = name;
-
-    };
-
-    public void setSemester(int semester){
-
+    public void setSemester(int semester) {
         this.semester = semester;
-
-    };
-
-    public void setModuleType (ModuleType typeOfModule){
-
-        this.typeOfModule = typeOfModule;
-
-    };
-
-    public void setURLDescriptionDocument(String newURL){
-
-        this.urlDescriptionDocument = newURL;
-
-    };
-
-    public void setModuleCertificationType (ModuleCertificationType typeOfCertification){
-
-        this.typeOfCertification = typeOfCertification;
-
-    };
+    }
 
     public List<String> getProfessorNames() {
         return professorNames;
@@ -106,5 +45,37 @@ public class Module {
 
     public void setProfessorNames(List<String> professorNames) {
         this.professorNames = professorNames;
+    }
+
+    public ModuleType getTypeOfModule() {
+        return typeOfModule;
+    }
+
+    public void setTypeOfModule(ModuleType typeOfModule) {
+        this.typeOfModule = typeOfModule;
+    }
+
+    public String getUrlDescriptionDocument() {
+        return urlDescriptionDocument;
+    }
+
+    public void setUrlDescriptionDocument(String urlDescriptionDocument) {
+        this.urlDescriptionDocument = urlDescriptionDocument;
+    }
+
+    public ModuleCertificationType getTypeOfCertification() {
+        return typeOfCertification;
+    }
+
+    public void setTypeOfCertification(ModuleCertificationType typeOfCertification) {
+        this.typeOfCertification = typeOfCertification;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 }

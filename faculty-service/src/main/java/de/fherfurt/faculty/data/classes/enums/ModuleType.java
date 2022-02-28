@@ -1,4 +1,4 @@
-package de.fherfurt.faculty.data.enums;
+package de.fherfurt.faculty.data.classes.enums;
 
 public enum ModuleType {
     ELECTIVE, SPECIALIZATION, COMPULSORY;
