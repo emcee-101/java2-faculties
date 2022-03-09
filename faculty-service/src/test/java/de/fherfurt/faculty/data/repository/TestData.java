@@ -15,7 +15,7 @@ import java.util.List;
 public class TestData {
     private final List<Course> courses = new ArrayList<Course>(Arrays.asList(
             new Course(
-                    "biw",
+                    "BIW",
                     7,
                     -1,
                     CourseType.BACHELOR,
@@ -23,7 +23,7 @@ public class TestData {
                     "KA"
             ),
             new Course(
-                    "ai",
+                    "AI",
                     7,
                     -1,
                     CourseType.BACHELOR,
