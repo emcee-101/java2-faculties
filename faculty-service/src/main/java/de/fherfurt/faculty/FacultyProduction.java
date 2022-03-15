@@ -14,6 +14,7 @@ import de.fherfurt.faculty.data.repository.UniversityRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class FacultyProduction {
 
@@ -40,11 +41,10 @@ public class FacultyProduction {
     public List<String> filterModulesBySemesterAndCourse (String courseName, int numberOfSemester) {
         List<Module> inputModuleList;
         inputModuleList = moduleRepository.getList();
-        List<String> outputModuleList = null;
+        List<String> outputModuleList = new ArrayList<String>();
 
-        for (int i = 0; i < inputModuleList.size(); i++) {
-            Module anyModule = inputModuleList.get(i);
-            if ((courseName == anyModule.getCourseName()) && (numberOfSemester == anyModule.getSemester())) {
+        for (Module anyModule : inputModuleList) {
+            if ((courseName.equals(anyModule.getCourseName())) && (numberOfSemester == anyModule.getSemester())) {
                 outputModuleList.add(anyModule.getName());
             }
         }
@@ -55,11 +55,10 @@ public class FacultyProduction {
     public List<String> filterModulesByCourse (String courseName) {
         List<Module> inputModuleList;
         inputModuleList = moduleRepository.getList();
-        List<String> outputModuleList = null;
+        List<String> outputModuleList = new ArrayList<String>();
 
-        for (int i = 0; i < inputModuleList.size(); i++) {
-            Module anyModule = inputModuleList.get(i);
-            if (courseName == anyModule.getCourseName()) {
+        for (Module anyModule : inputModuleList) {
+            if (courseName.equals(anyModule.getCourseName())) {
                 outputModuleList.add(anyModule.getName());
             }
         }
