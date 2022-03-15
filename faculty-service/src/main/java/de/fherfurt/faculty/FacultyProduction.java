@@ -31,93 +31,41 @@ public class FacultyProduction {
 
 
     public boolean isFacultynameValid(String name) {
-        return true;
-    };
+        return true; }
 
 
 // CODE HIER!!!!
 
-    // adds a new university to the repository, requires all properties of a university class
-    public void addNewUniversity(String name, String presidentName) {
-        University university = new University(name, presidentName);
-        universityRepository.save(university);
+
+    public List<String> filterModulesBySemesterAndCourse (String courseName, int numberOfSemester) {
+        List<Module> inputModuleList;
+        inputModuleList = moduleRepository.getList();
+        List<String> outputModuleList = null;
+
+        for (int i = 0; i < inputModuleList.size(); i++) {
+            Module anyModule = inputModuleList.get(i);
+            if ((courseName == anyModule.getCourseName()) && (numberOfSemester == anyModule.getSemester())) {
+                outputModuleList.add(anyModule.getName());
+            }
+        }
+        return outputModuleList;
+        
     }
 
-    // deletes a university from the repository by name
-    public void deleteUniversity(String universityName) {
-        universityRepository.delete(universityName);
+    public List<String> filterModulesByCourse (String courseName) {
+        List<Module> inputModuleList;
+        inputModuleList = moduleRepository.getList();
+        List<String> outputModuleList = null;
+
+        for (int i = 0; i < inputModuleList.size(); i++) {
+            Module anyModule = inputModuleList.get(i);
+            if (courseName == anyModule.getCourseName()) {
+                outputModuleList.add(anyModule.getName());
+            }
+        }
+        return outputModuleList;
+
     }
-
-    // adds a new faculty to the repository, requires all properties of a faculty class
-    public void addNewFaculty(String decanName, String name, String universityName) {
-        Faculty faculty = new Faculty(decanName, name, universityName);
-        facultyRepository.save(faculty);
-    }
-
-    // deletes a faculty from the repository by name
-    public void deleteFaculty(String facultyName) {
-        facultyRepository.delete(facultyName);
-    }
-
-    // adds a new course to the repository, requires all properties of a course class
-    public void addNewCourse(String name, int numberOfSemesters, float numerusClausus, CourseType typeOfCourse, String directorName, String facultyName) {
-        Course course = new Course(name, numberOfSemesters, numerusClausus, typeOfCourse, directorName, facultyName);
-        courseRepository.save(course);
-    }
-
-    // deletes a course from the repository by name
-    public void deleteCourse(String courseName) {
-        courseRepository.delete(courseName);
-    }
-
-    // adds a new module to the repository, requires all properties of a module class
-    public void addNewModule(String name, int semester, List<String> professorNames, ModuleType typeOfModule, String urlDescriptionDocument, ModuleCertificationType typeOfCertification, String courseName) {
-        Module module = new Module(name, semester, professorNames, typeOfModule, urlDescriptionDocument, typeOfCertification, courseName);
-        moduleRepository.save(module);
-    }
-
-    // deletes a Module from the repository by name
-    public void deleteModule(String moduleName) {
-        moduleRepository.delete(moduleName);
-    }
-
-    /*
-    *
-    * adds a ProfessorName to the Module-ProfessorNames
-    *
-    * @param professorName professors name to add
-    * @param moduleName module name, in which the professor name will be saved
-    *
-     */
-    public void addProfessorToModule(String professorName, String moduleName) {
-        Module module = moduleRepository.findByName(moduleName);
-        if (!module.getProfessorNames().contains(professorName)) {
-            List<String> newProfessorNames = module.getProfessorNames();
-            newProfessorNames.add(professorName);
-            module.setProfessorNames(newProfessorNames);
-        } else return;
-        moduleRepository.save(module);
-    }
-
-    /*
-     *
-     * deletes a ProfessorName from the Module-ProfessorNames
-     *
-     * @param professorName professors name to delete
-     * @param moduleName module name, from which the professor name will be deleted
-     *
-     */
-    public void removeProfessorFromModule(String professorName, String moduleName) {
-        Module module = moduleRepository.findByName(moduleName);
-        if (module.getProfessorNames().contains(professorName)) {
-            List<String> newProfessorNames = module.getProfessorNames();
-            newProfessorNames.remove(professorName);
-            module.setProfessorNames(newProfessorNames);
-        } else return;
-        moduleRepository.save(module);
-    }
-
-
 
     /*
             BIS: 25. 3. End-Deadline
