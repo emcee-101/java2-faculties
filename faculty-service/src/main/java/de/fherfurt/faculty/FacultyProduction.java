@@ -118,6 +118,26 @@ public class FacultyProduction {
     }
 
     /*
+     *
+     * returns the Name of the Head of this faculty
+     *
+     * @param facultyName name of faculty whose leader is to be searched
+     *
+     */
+    public String outputDekanByFaculty(String facultyName){
+
+        Faculty desiredFaculty = facultyRepository.findByName(facultyName);
+
+        String dekan = desiredFaculty.getDecanName();
+
+        if (dekan == null){
+            dekan = "Faculty not found";
+        }
+
+        return dekan;
+    }
+
+    /*
             BIS: 25. 3. End-Deadline
             Ziel: 20.03.2022
             Meeting: 16.03.2022
