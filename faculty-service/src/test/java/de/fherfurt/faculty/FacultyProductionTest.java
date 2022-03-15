@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class FacultyProductionTest {
 
@@ -77,5 +78,20 @@ class FacultyProductionTest {
         facultyProduction.removeProfessorFromModule(professorNameToDelete, moduleName);
         // THEN
         assertFalse(moduleRepository.findByName(moduleName).getProfessorNames().contains(professorNameToDelete));
+    }
+
+    @Test
+    void outputDekanByFaculty() {
+        // GIVEN
+        String facultyToGetDekanFrom1 = testData.getFaculties().get(0).getName();
+        String facultyToGetDekanFrom2 = "Gartenbau";
+
+        // WHEN
+        String resultTest1 = facultyProduction.outputDekanByFaculty(facultyToGetDekanFrom1);
+        String resultTest2 = facultyProduction.outputDekanByFaculty(facultyToGetDekanFrom2);
+
+        // THEN
+        assertTrue(resultTest1 == (testData.getFaculties().get(0).getDecanName()));
+        assertTrue(resultTest2 == "Faculty not found");
     }
 }

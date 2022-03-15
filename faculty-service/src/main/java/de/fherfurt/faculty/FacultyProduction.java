@@ -128,10 +128,13 @@ public class FacultyProduction {
 
         Faculty desiredFaculty = facultyRepository.findByName(facultyName);
 
-        String dekan = desiredFaculty.getDecanName();
+        String dekan;
 
-        if (dekan == null){
+        if (desiredFaculty == null){
             dekan = "Faculty not found";
+        }
+        else{
+            dekan = desiredFaculty.getDecanName();
         }
 
         return dekan;
