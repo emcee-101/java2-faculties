@@ -7,15 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModuleRepository {
+
+    public ModuleRepository(List<Module> modules) {
+        this.modules = modules;
+    }
+
     private final Functions<Module> moduleFunctions = new Functions<Module>();
-    private final List<Module> modules = new ArrayList<Module>();
+    private final List<Module> modules;
 
     public void save(Module module) {
         moduleFunctions.save(module, modules);
     }
 
-    public void findByName(String name) {
-        moduleFunctions.findByName(name, modules);
+    public Module findByName(String name) {
+        return moduleFunctions.findByName(name, modules);
     }
 
     public void delete(String name) {
