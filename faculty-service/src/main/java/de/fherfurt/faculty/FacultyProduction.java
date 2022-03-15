@@ -61,6 +61,7 @@ public class FacultyProduction {
             }
         }
         return outputModuleList;
+    }
 
     // adds a new university to the repository, requires all properties of a university class
     public void addNewUniversity(String name, String presidentName) {
