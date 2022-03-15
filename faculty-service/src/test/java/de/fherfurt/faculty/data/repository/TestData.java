@@ -57,7 +57,7 @@ public class TestData {
             ),
             new Module(
                     "mi",
-                    3,
+                    5,
                     new ArrayList<String>(Arrays.asList("prof1", "prof2")),
                     ModuleType.SPECIALIZATION,
                     "doc2.pdf",
