@@ -14,6 +14,7 @@ import de.fherfurt.faculty.data.repository.UniversityRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class FacultyProduction {
 
@@ -35,7 +36,32 @@ public class FacultyProduction {
 
 
 // CODE HIER!!!!
+    public List<String> filterModulesBySemesterAndCourse (String courseName, int numberOfSemester) {
+        List<Module> inputModuleList;
+        inputModuleList = moduleRepository.getList();
+        List<String> outputModuleList = new ArrayList<String>();
 
+        for (Module anyModule : inputModuleList) {
+            if ((courseName.equals(anyModule.getCourseName())) && (numberOfSemester == anyModule.getSemester())) {
+                outputModuleList.add(anyModule.getName());
+            }
+        }
+        return outputModuleList;
+        
+    }
+
+    public List<String> filterModulesByCourse (String courseName) {
+        List<Module> inputModuleList;
+        inputModuleList = moduleRepository.getList();
+        List<String> outputModuleList = new ArrayList<String>();
+
+        for (Module anyModule : inputModuleList) {
+            if (courseName.equals(anyModule.getCourseName())) {
+                outputModuleList.add(anyModule.getName());
+            }
+        }
+        return outputModuleList;
+    }
 
     // adds a new university to the repository, requires all properties of a university class
     public void addNewUniversity(String name, String presidentName) {
