@@ -8,15 +8,19 @@ import java.util.List;
 
 public class UniversityRepository{
 
+    public UniversityRepository(List<University> universities) {
+        this.universities = universities;
+    }
+
     private final Functions<University> universityFunctions = new Functions<University>();
-    private final List<University> universities = new ArrayList<University>();
+    private final List<University> universities;
 
     public void save(University university) {
         universityFunctions.save(university, universities);
     }
 
-    public void findByName(String name) {
-        universityFunctions.findByName(name, universities);
+    public University findByName(String name) {
+        return universityFunctions.findByName(name, universities);
     }
 
     public void delete(String name) {
