@@ -43,6 +43,18 @@ class FacultyProductionTest {
     }
 
     @Test
+    void deleteUniversity() {
+        // GIVEN
+        String testUniName = testData.getUniversities().get(0).getName();
+
+        assertNotNull(universityRepository.findByName(testUniName));
+        // WHEN
+        facultyProduction.deleteUniversity(testUniName);
+        // THEN
+        assertNull(universityRepository.findByName(testUniName));
+    }
+
+    @Test
     void addProfessorToModule() {
         // GIVEN
         String newProfessorName = "new prof";
