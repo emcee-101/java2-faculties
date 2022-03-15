@@ -47,7 +47,6 @@ public class FacultyProduction {
             }
         }
         return outputModuleList;
-        
     }
 
     public List<String> filterModulesByCourse (String courseName) {
@@ -141,6 +140,29 @@ public class FacultyProduction {
             module.setProfessorNames(newProfessorNames);
         } else return;
         moduleRepository.save(module);
+    }
+
+    /*
+     *
+     * returns the Name of the Head of this faculty
+     *
+     * @param facultyName name of faculty whose leader is to be searched
+     *
+     */
+   public String outputDekanByFaculty(String facultyName){
+
+        Faculty desiredFaculty = facultyRepository.findByName(facultyName);
+
+        String dekan;
+
+        if (desiredFaculty == null){
+            dekan = "Faculty not found";
+        }
+        else{
+            dekan = desiredFaculty.getDecanName();
+        }
+
+        return dekan;
     }
 
     /*
