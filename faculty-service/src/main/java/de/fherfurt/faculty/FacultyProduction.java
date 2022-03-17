@@ -166,6 +166,36 @@ public class FacultyProduction {
     }
 
     /*
+     *
+     * validates the name of a course
+     *
+     * @param courseName: the name of the course, that is to be validated
+     *
+     */
+    public boolean isCourseNameValid(String courseName) {
+        return name.matches("(([A-Z]+|([A-Z]?[a-z]+))[ ,/-]{0,3})+"); }
+
+    /*
+     *
+     * validates the name of a faculty
+     *
+     * @param facultyName: the name of the faculty, that is to be validated
+     *
+     */
+    public boolean isFacultyNameValid(String facultyName) {
+        return name.matches("(([A-Z]+|([A-Z]?[a-z]+))[ ,/-]{0,3})+"); }
+
+    /*
+     *
+     * validates the name of a module
+     *
+     * @param moduleName: the name of the module, that is to be validated
+     *
+     */
+    public boolean isModuleNameValid(String moduleName) {
+        return name.matches("(([A-Z]+|([A-Z]?[a-z]+))[ ,/-]{0,3})+[1-9]?"); }
+
+    /*
             BIS: 25. 3. End-Deadline
             Ziel: 20.03.2022
             Meeting: 16.03.2022

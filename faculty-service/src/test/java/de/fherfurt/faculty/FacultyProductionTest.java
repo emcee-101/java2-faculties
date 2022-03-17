@@ -128,5 +128,32 @@ class FacultyProductionTest {
         assertFalse(testOutput2.contains(testModuleName));
     }
 
+    @Test
+    void isCourseNameValid() {
+        // GIVEN
+        String testCourseName1 = "Architektur, Stadt- und Raumplanung";
+        String testCourseName2 = "Netze 1";
+        // WHEN
+        boolean result1 = facultyProduction.isCourseNameValid(testCourseName1);
+        boolean result2 = facultyProduction.isCourseNameValid(testCourseName2);
+
+        // THEN
+        assertTrue(result1 == true);
+        assertFalse(result2 == true);
+    }
+
+    @Test
+    void isModuleNameValid() {
+        // GIVEN
+        String testModuleName1 = "Datenbanken 2";
+        String testModuleName2 = "2 Datenbanken";
+        // WHEN
+        boolean result1 = facultyProduction.isModuleNameValid(testModuleName1);
+        boolean result2 = facultyProduction.isModuleNameValid(testModuleName2);
+
+        // THEN
+        assertTrue(result1 == true);
+        assertFalse(result2 == true);
+    }
 
 }
