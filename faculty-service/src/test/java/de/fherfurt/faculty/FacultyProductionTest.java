@@ -6,9 +6,10 @@ import de.fherfurt.faculty.data.repository.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+import java.util.List;
 
 class FacultyProductionTest {
 
@@ -35,6 +36,7 @@ class FacultyProductionTest {
         // GIVEN
         String testUniName = "another uni";
         String testUniPresident = "new president";
+
         assertNull(universityRepository.findByName(testUniName));
         // WHEN
         facultyProduction.addNewUniversity(testUniName, testUniPresident);
@@ -81,6 +83,21 @@ class FacultyProductionTest {
     }
 
     @Test
+    void outputDekanByFaculty() {
+        // GIVEN
+        String facultyToGetDekanFrom1 = testData.getFaculties().get(0).getName();
+        String facultyToGetDekanFrom2 = "Gartenbau";
+
+        // WHEN
+        String resultTest1 = facultyProduction.outputDekanByFaculty(facultyToGetDekanFrom1);
+        String resultTest2 = facultyProduction.outputDekanByFaculty(facultyToGetDekanFrom2);
+
+        // THEN
+        assertTrue(resultTest1 == (testData.getFaculties().get(0).getDecanName()));
+        assertTrue(resultTest2 == "Faculty not found");
+    }
+
+    @Test
     void filterModulesBySemesterAndCourse() {
         // given
         String testModuleName = testData.getModules().get(0).getName();
@@ -110,4 +127,6 @@ class FacultyProductionTest {
         assertTrue(testOutput.contains(testModuleName));
         assertFalse(testOutput2.contains(testModuleName));
     }
+
+
 }
