@@ -165,6 +165,18 @@ public class FacultyProduction {
         return dekan;
     }
 
+
+        /*
+     *
+     * updating the DescriptionDocument
+     *
+     */
+   public void updateDescriptionDocument(Module original, Module update){
+
+        original.setUrlDescriptionDocument(update.getUrlDescriptionDocument());
+       
+    }
+
     /*
             BIS: 25. 3. End-Deadline
             Ziel: 20.03.2022
