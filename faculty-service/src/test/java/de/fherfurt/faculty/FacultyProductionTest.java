@@ -179,5 +179,17 @@ class FacultyProductionTest {
         assertTrue(testOutput1 == true);
         assertFalse(testOutput2 == true);
     }
+    
+    @Test
+    void updateDescriptionDocument() {
+        // GIVEN
+        String newUrlDescriptionDocument = "new url";
+        String moduleName = testData.getModules().get(0).getName();
 
+        assertFalse(moduleRepository.findByName(moduleName).getUrlDescriptionDocument().contains(newUrlDescriptionDocument));
+        // WHEN
+        facultyProduction.addUrlDescriptionDocument(newUrlDescriptionDocument, moduleName);
+        // THEN
+        assertTrue(moduleRepository.findByName(moduleName).getUrlDescriptionDocument().contains(newUrlDescriptionDocument));
+    }
 }

@@ -184,12 +184,18 @@ public class FacultyProduction {
      *
      * updating the DescriptionDocument
      *
+     * @param urlDescriptionDocument Document to update
+     * @param moduleName module name, in which the Document will be saved
      */
-   public void updateDescriptionDocument(Module original, Module update){
-
-        original.setUrlDescriptionDocument(update.getUrlDescriptionDocument());
-       
+   public void updateDescriptionDocument(String urlDescriptionDocument, String moduleName){
+        Module module = moduleRepository.findByName(moduleName);
+        if (!module.getUrlDescriptionDocument().contains(urlDescriptionDocument)) {
+            String newUrlDescriptionDocument = module.getUrlDescriptionDocument();
+            module.setUrlDescriptionDocument(newUrlDescriptionDocument);
+        } else return;
+        moduleRepository.save(module);
     }
+
 
     /*
      *
