@@ -13,6 +13,10 @@ This service supplies faculty-related data to students and lecturers and functio
 ## Libraries and Programming languages
 
 * Java 17
+* Maven
 * Junit 5
 * AssertJ
 
+## Documentation
+
+https://github.com/fh-erfurt/ws2122-java1-team1-service3/wiki/2.-Architecture
