@@ -131,29 +131,53 @@ class FacultyProductionTest {
     @Test
     void isCourseNameValid() {
         // GIVEN
-        String testCourseName1 = "Architektur, Stadt- und Raumplanung";
-        String testCourseName2 = "Netze 1";
+        String testCourseName1 = testData.getCourses().get(0).getName();
+        String testCourseName2 = "false name";
         // WHEN
-        boolean result1 = facultyProduction.isCourseNameValid(testCourseName1);
-        boolean result2 = facultyProduction.isCourseNameValid(testCourseName2);
-
+        boolean testOutput1 = facultyProduction.isCourseNameValid(testCourseName1);
+        boolean testOutput2 = facultyProduction.isCourseNameValid(testCourseName2);
         // THEN
-        assertTrue(result1 == true);
-        assertFalse(result2 == true);
+        assertTrue(testOutput1 == true);
+        assertFalse(testOutput2 == true);
+    }
+
+    @Test
+    void isFacultyNameValid() {
+        // GIVEN
+        String testFacultyName1 = testData.getFaculties().get(0).getName();
+        String testFacultyName2 = "false name";
+        // WHEN
+        boolean testOutput1 = facultyProduction.isFacultyNameValid(testFacultyName1);
+        boolean testOutput2 = facultyProduction.isFacultyNameValid(testFacultyName2);
+        // THEN
+        assertTrue(testOutput1 == true);
+        assertFalse(testOutput2 == true);
     }
 
     @Test
     void isModuleNameValid() {
         // GIVEN
-        String testModuleName1 = "Datenbanken 2";
-        String testModuleName2 = "2 Datenbanken";
+        String testModuleName1 = testData.getModules().get(0).getName();
+        String testModuleName2 = "false name";
         // WHEN
-        boolean result1 = facultyProduction.isModuleNameValid(testModuleName1);
-        boolean result2 = facultyProduction.isModuleNameValid(testModuleName2);
-
+        boolean testOutput1 = facultyProduction.isModuleNameValid(testModuleName1);
+        boolean testOutput2 = facultyProduction.isModuleNameValid(testModuleName2);
         // THEN
-        assertTrue(result1 == true);
-        assertFalse(result2 == true);
+        assertTrue(testOutput1 == true);
+        assertFalse(testOutput2 == true);
+    }
+
+    @Test
+    void isUniversityNameValid() {
+        // GIVEN
+        String testUniversityName1 = testData.getUniversities().get(0).getName();
+        String testUniversityName2 = "false name";
+        // WHEN
+        boolean testOutput1 = facultyProduction.isUniversityNameValid(testUniversityName1);
+        boolean testOutput2 = facultyProduction.isUniversityNameValid(testUniversityName2);
+        // THEN
+        assertTrue(testOutput1 == true);
+        assertFalse(testOutput2 == true);
     }
 
 }

@@ -31,10 +31,6 @@ public class FacultyProduction {
     ModuleRepository moduleRepository;
 
 
-    public boolean isFacultynameValid(String name) {
-        return true; }
-
-
 // CODE HIER!!!!
     public List<String> filterModulesBySemesterAndCourse (String courseName, int numberOfSemester) {
         List<Module> inputModuleList;
@@ -173,7 +169,16 @@ public class FacultyProduction {
      *
      */
     public boolean isCourseNameValid(String courseName) {
-        return name.matches("(([A-Z]+|([A-Z]?[a-z]+))[ ,/-]{0,3})+"); }
+       Course course = courseRepository.findByName(courseName);
+       boolean isValid;
+
+       if(course == null){
+          isValid = false;
+       } else{
+           isValid = true;
+       }
+       return isValid;
+        }
 
     /*
      *
@@ -183,7 +188,16 @@ public class FacultyProduction {
      *
      */
     public boolean isFacultyNameValid(String facultyName) {
-        return name.matches("(([A-Z]+|([A-Z]?[a-z]+))[ ,/-]{0,3})+"); }
+        Faculty faculty = facultyRepository.findByName(facultyName);
+        boolean isValid;
+
+        if(faculty == null){
+            isValid = false;
+        } else{
+            isValid = true;
+        }
+        return isValid;
+    }
 
     /*
      *
@@ -193,7 +207,35 @@ public class FacultyProduction {
      *
      */
     public boolean isModuleNameValid(String moduleName) {
-        return name.matches("(([A-Z]+|([A-Z]?[a-z]+))[ ,/-]{0,3})+[1-9]?"); }
+        Module module = moduleRepository.findByName(moduleName);
+        boolean isValid;
+
+        if(module == null){
+            isValid = false;
+        } else{
+            isValid = true;
+        }
+        return isValid;
+    }
+
+    /*
+     *
+     * validates the name of a university
+     *
+     * @param moduleName: the name of the university, that is to be validated
+     *
+     */
+    public boolean isUniversityNameValid(String universityName) {
+        University university = universityRepository.findByName(universityName);
+        boolean isValid;
+
+        if(university == null){
+            isValid = false;
+        } else{
+            isValid = true;
+        }
+        return isValid;
+    }
 
     /*
             BIS: 25. 3. End-Deadline
