@@ -93,7 +93,7 @@ class FacultyProductionTest {
         String resultTest2 = facultyProduction.outputDeanByFaculty(facultyToGetDekanFrom2);
 
         // THEN
-        assertTrue(resultTest1 == (testData.getFaculties().get(0).getDecanName()));
+        assertTrue(resultTest1 == (testData.getFaculties().get(0).getDeanName()));
         assertTrue(resultTest2 == "Faculty not found");
     }
 

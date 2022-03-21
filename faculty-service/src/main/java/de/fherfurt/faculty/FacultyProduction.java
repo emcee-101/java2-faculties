@@ -173,7 +173,7 @@ public class FacultyProduction {
             dean = "Faculty not found";
         }
         else{
-            dean = desiredFaculty.getDecanName();
+            dean = desiredFaculty.getDeanName();
         }
 
         return dean;
