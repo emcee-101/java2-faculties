@@ -83,14 +83,14 @@ class FacultyProductionTest {
     }
 
     @Test
-    void outputDekanByFaculty() {
+    void outputDeanByFaculty() {
         // GIVEN
         String facultyToGetDekanFrom1 = testData.getFaculties().get(0).getName();
         String facultyToGetDekanFrom2 = "Gartenbau";
 
         // WHEN
-        String resultTest1 = facultyProduction.outputDekanByFaculty(facultyToGetDekanFrom1);
-        String resultTest2 = facultyProduction.outputDekanByFaculty(facultyToGetDekanFrom2);
+        String resultTest1 = facultyProduction.outputDeanByFaculty(facultyToGetDekanFrom1);
+        String resultTest2 = facultyProduction.outputDeanByFaculty(facultyToGetDekanFrom2);
 
         // THEN
         assertTrue(resultTest1 == (testData.getFaculties().get(0).getDecanName()));
