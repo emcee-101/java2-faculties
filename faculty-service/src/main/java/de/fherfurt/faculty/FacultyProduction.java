@@ -32,6 +32,16 @@ public class FacultyProduction {
 
 
 // CODE HIER!!!!
+
+    /*
+     *
+     * filters an inputModuleList with specified parameters and returns the names of fitting modules in an outputModuleList
+     *
+     * @param courseName name of the course in which the module takes place
+     * @param numberOfSemester the semester in which the module takes place
+     *
+     */
+
     public List<String> filterModulesBySemesterAndCourse (String courseName, int numberOfSemester) {
         List<Module> inputModuleList;
         inputModuleList = moduleRepository.getList();
@@ -44,6 +54,14 @@ public class FacultyProduction {
         }
         return outputModuleList;
     }
+
+    /*
+     *
+     * filters an inputModuleList with a specified parameter and returns the names of fitting modules in an outputModuleList
+     *
+     * @param courseName name of the course in which the module takes place
+     *
+     */
 
     public List<String> filterModulesByCourse (String courseName) {
         List<Module> inputModuleList;
@@ -159,6 +177,18 @@ public class FacultyProduction {
         }
 
         return dekan;
+    }
+
+
+        /*
+     *
+     * updating the DescriptionDocument
+     *
+     */
+   public void updateDescriptionDocument(Module original, Module update){
+
+        original.setUrlDescriptionDocument(update.getUrlDescriptionDocument());
+       
     }
 
     /*
