@@ -180,7 +180,7 @@ public class FacultyProduction {
     }
 
 
-        /*
+    /*
      *
      * updating the DescriptionDocument
      *
@@ -194,83 +194,6 @@ public class FacultyProduction {
             module.setUrlDescriptionDocument(newUrlDescriptionDocument);
         } else return;
         moduleRepository.save(module);
-    }
-
-
-    /*
-     *
-     * validates the name of a course
-     *
-     * @param courseName: the name of the course, that is to be validated
-     *
-     */
-    public boolean isCourseNameValid(String courseName) {
-       Course course = courseRepository.findByName(courseName);
-       boolean isValid;
-
-       if(course == null){
-          isValid = false;
-       } else{
-           isValid = true;
-       }
-       return isValid;
-        }
-
-    /*
-     *
-     * validates the name of a faculty
-     *
-     * @param facultyName: the name of the faculty, that is to be validated
-     *
-     */
-    public boolean isFacultyNameValid(String facultyName) {
-        Faculty faculty = facultyRepository.findByName(facultyName);
-        boolean isValid;
-
-        if(faculty == null){
-            isValid = false;
-        } else{
-            isValid = true;
-        }
-        return isValid;
-    }
-
-    /*
-     *
-     * validates the name of a module
-     *
-     * @param moduleName: the name of the module, that is to be validated
-     *
-     */
-    public boolean isModuleNameValid(String moduleName) {
-        Module module = moduleRepository.findByName(moduleName);
-        boolean isValid;
-
-        if(module == null){
-            isValid = false;
-        } else{
-            isValid = true;
-        }
-        return isValid;
-    }
-
-    /*
-     *
-     * validates the name of a university
-     *
-     * @param moduleName: the name of the university, that is to be validated
-     *
-     */
-    public boolean isUniversityNameValid(String universityName) {
-        University university = universityRepository.findByName(universityName);
-        boolean isValid;
-
-        if(university == null){
-            isValid = false;
-        } else{
-            isValid = true;
-        }
-        return isValid;
     }
 
     /*
@@ -380,7 +303,7 @@ public class FacultyProduction {
 
 
     DOKUMENTATION:
-
+    
         - Introduction (Namen, Bibliotheken, KURZE beschreibung(?))                                                         [Falko]
 
         - Datenmodell (Erklärung, Klassen (Was? Wie aufgebaut? Beziehungen untereinander?))                                 [Chris]
@@ -397,6 +320,7 @@ public class FacultyProduction {
 
 
 
+
     Java-Dokumentation Format:
 
         * saves the entity in the list
@@ -404,7 +328,7 @@ public class FacultyProduction {
         * @param entity object to save
         * @param list the unique list which contains all items
         *
-
+    
 
 
 
