@@ -184,11 +184,93 @@ public class FacultyProduction {
      *
      * updating the DescriptionDocument
      *
+     * @param urlDescriptionDocument Document to update
+     * @param moduleName module name, in which the Document will be saved
      */
-   public void updateDescriptionDocument(Module original, Module update){
+   public void updateDescriptionDocument(String urlDescriptionDocument, String moduleName){
+        Module module = moduleRepository.findByName(moduleName);
+        if (!module.getUrlDescriptionDocument().contains(urlDescriptionDocument)) {
+            String newUrlDescriptionDocument = module.getUrlDescriptionDocument();
+            module.setUrlDescriptionDocument(newUrlDescriptionDocument);
+        } else return;
+        moduleRepository.save(module);
+    }
 
-        original.setUrlDescriptionDocument(update.getUrlDescriptionDocument());
-       
+
+    /*
+     *
+     * validates the name of a course
+     *
+     * @param courseName: the name of the course, that is to be validated
+     *
+     */
+    public boolean isCourseNameValid(String courseName) {
+       Course course = courseRepository.findByName(courseName);
+       boolean isValid;
+
+       if(course == null){
+          isValid = false;
+       } else{
+           isValid = true;
+       }
+       return isValid;
+        }
+
+    /*
+     *
+     * validates the name of a faculty
+     *
+     * @param facultyName: the name of the faculty, that is to be validated
+     *
+     */
+    public boolean isFacultyNameValid(String facultyName) {
+        Faculty faculty = facultyRepository.findByName(facultyName);
+        boolean isValid;
+
+        if(faculty == null){
+            isValid = false;
+        } else{
+            isValid = true;
+        }
+        return isValid;
+    }
+
+    /*
+     *
+     * validates the name of a module
+     *
+     * @param moduleName: the name of the module, that is to be validated
+     *
+     */
+    public boolean isModuleNameValid(String moduleName) {
+        Module module = moduleRepository.findByName(moduleName);
+        boolean isValid;
+
+        if(module == null){
+            isValid = false;
+        } else{
+            isValid = true;
+        }
+        return isValid;
+    }
+
+    /*
+     *
+     * validates the name of a university
+     *
+     * @param moduleName: the name of the university, that is to be validated
+     *
+     */
+    public boolean isUniversityNameValid(String universityName) {
+        University university = universityRepository.findByName(universityName);
+        boolean isValid;
+
+        if(university == null){
+            isValid = false;
+        } else{
+            isValid = true;
+        }
+        return isValid;
     }
 
     /*
