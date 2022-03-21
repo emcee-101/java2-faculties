@@ -5,21 +5,21 @@ import java.util.*;
 
 public class Faculty extends Basic {
 
-    public Faculty(String decanName, String name, String universityName) {
+    public Faculty(String deanName, String name, String universityName) {
         super(name);
-        this.decanName = decanName;
+        this.deanName = deanName;
         this.universityName = universityName;
     }
 
-    private String decanName;
+    private String deanName;
     private String universityName;
 
-    public String getDecanName() {
-        return decanName;
+    public String getDeanName() {
+        return deanName;
     }
 
     public void setDecanName(String decanName) {
-        this.decanName = decanName;
+        this.deanName = deanName;
     }
 
     public String getUniversityName() {

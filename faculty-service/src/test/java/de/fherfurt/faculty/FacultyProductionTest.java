@@ -83,18 +83,18 @@ class FacultyProductionTest {
     }
 
     @Test
-    void outputDekanByFaculty() {
+    void outputDeanByFaculty() {
         // GIVEN
         String facultyToGetDekanFrom1 = testData.getFaculties().get(0).getName();
         String facultyToGetDekanFrom2 = "Gartenbau";
 
         // WHEN
-        String resultTest1 = facultyProduction.outputDekanByFaculty(facultyToGetDekanFrom1);
-        String resultTest2 = facultyProduction.outputDekanByFaculty(facultyToGetDekanFrom2);
+        String resultTest1 = facultyProduction.outputDeanByFaculty(facultyToGetDekanFrom1);
+        String resultTest2 = facultyProduction.outputDeanByFaculty(facultyToGetDekanFrom2);
 
         // THEN
-        assertTrue(resultTest1 == (testData.getFaculties().get(0).getDecanName()));
-        assertTrue(resultTest2 == "Faculty not found");
+        assertSame(resultTest1, testData.getFaculties().get(0).getDeanName());
+        assertSame(resultTest2, "Faculty not found");
     }
 
     @Test
@@ -178,19 +178,6 @@ class FacultyProductionTest {
         // THEN
         assertTrue(testOutput1 == true);
         assertFalse(testOutput2 == true);
-    }
-
-    @Test
-    void updateDescriptionDocument() {
-        // GIVEN
-        String newUrlDescriptionDocument = "new url";
-        String moduleName = testData.getModules().get(0).getName();
-
-        assertFalse(moduleRepository.findByName(moduleName).getUrlDescriptionDocument().contains(newUrlDescriptionDocument));
-        // WHEN
-        facultyProduction.addUrlDescriptionDocument(newUrlDescriptionDocument, moduleName);
-        // THEN
-        assertTrue(moduleRepository.findByName(moduleName).getUrlDescriptionDocument().contains(newUrlDescriptionDocument));
     }
 
 }

@@ -163,20 +163,20 @@ public class FacultyProduction {
      * @param facultyName name of faculty whose leader is to be searched
      *
      */
-   public String outputDekanByFaculty(String facultyName){
+   public String outputDeanByFaculty(String facultyName){
 
         Faculty desiredFaculty = facultyRepository.findByName(facultyName);
 
-        String dekan;
+        String dean;
 
         if (desiredFaculty == null){
-            dekan = "Faculty not found";
+            dean = "Faculty not found";
         }
         else{
-            dekan = desiredFaculty.getDecanName();
+            dean = desiredFaculty.getDeanName();
         }
 
-        return dekan;
+        return dean;
     }
 
 
@@ -184,18 +184,10 @@ public class FacultyProduction {
      *
      * updating the DescriptionDocument
      *
-     * @param urlDescriptionDocument Document to update
-     * @param moduleName module name, in which the Document will be saved
      */
-   public void updateDescriptionDocument(String urlDescriptionDocument, String moduleName){
-        Module module = moduleRepository.findByName(moduleName);
-        if (!module.getUrlDescriptionDocument().contains(urlDescriptionDocument)) {
-            String newUrlDescriptionDocument = module.getUrlDescriptionDocument();
-            module.setUrlDescriptionDocument(newUrlDescriptionDocument);
-        } else return;
-        moduleRepository.save(module);
-    }
-        
+   public void updateDescriptionDocument(Module original, Module update){
+
+        original.setUrlDescriptionDocument(update.getUrlDescriptionDocument());
        
     }
 
