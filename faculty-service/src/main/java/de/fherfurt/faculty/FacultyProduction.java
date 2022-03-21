@@ -163,7 +163,7 @@ public class FacultyProduction {
      * @param facultyName name of faculty whose leader is to be searched
      *
      */
-   public String outputDekanByFaculty(String facultyName){
+   public String outputDeanByFaculty(String facultyName){
 
         Faculty desiredFaculty = facultyRepository.findByName(facultyName);
 
