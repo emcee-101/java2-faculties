@@ -3,7 +3,6 @@ package de.fherfurt.faculty.data.repository;
 import de.fherfurt.faculty.data.classes.Course;
 import de.fherfurt.faculty.data.repository.core.Functions;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CourseRepository{

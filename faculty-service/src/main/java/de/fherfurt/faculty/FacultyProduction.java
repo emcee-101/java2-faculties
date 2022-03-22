@@ -14,7 +14,6 @@ import de.fherfurt.faculty.data.repository.UniversityRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class FacultyProduction {
 
@@ -30,9 +29,6 @@ public class FacultyProduction {
     CourseRepository courseRepository;
     ModuleRepository moduleRepository;
 
-
-// CODE HIER!!!!
-
     /*
      *
      * filters an inputModuleList with specified parameters and returns the names of fitting modules in an outputModuleList
@@ -41,7 +37,6 @@ public class FacultyProduction {
      * @param numberOfSemester the semester in which the module takes place
      *
      */
-
     public List<String> filterModulesBySemesterAndCourse (String courseName, int numberOfSemester) {
         List<Module> inputModuleList;
         inputModuleList = moduleRepository.getList();
@@ -62,7 +57,6 @@ public class FacultyProduction {
      * @param courseName name of the course in which the module takes place
      *
      */
-
     public List<String> filterModulesByCourse (String courseName) {
         List<Module> inputModuleList;
         inputModuleList = moduleRepository.getList();
@@ -187,6 +181,7 @@ public class FacultyProduction {
      *
      * @param urlDescriptionDocument Document to update
      * @param moduleName module name, in which the Document will be saved
+     *
      */
    public void updateDescriptionDocument(String urlDescriptionDocument, String moduleName){
         Module module = moduleRepository.findByName(moduleName);
@@ -243,66 +238,4 @@ public class FacultyProduction {
         University university = universityRepository.findByName(universityName);
         return university != null;
     }
-
-    /*
-            BIS: 25. 3. End-Deadline
-            Ziel: 20.03.2022
-            Meeting: 16.03.2022
-
-    FUNKTIONALITÄTEN TO BE IMPLEMENTED (NAMES!!!!!!, ZU JEDER FUNKTION EINEN TEST!!!!!!!!):
-
-        - alle Module in einem semester in einem bestimmten Kurs            [Falko]
-
-        - alle Module eines Kurses                                          [Falko]
-
-        - is....NameValid (überpfüfung der namen für alle Klassen)          [Sarah]
-
-        - Dekan von bestimmter Fakultät ausgeben                            [Niklas]
-
-        - updateDescriptionDocument (Setter)                                [Marvin]
-
-        - add Professor to Module                                           [Chris]
-            - findbyName
-            - Professor prüfen  (getProfessorNames)
-            - Professor ggf hinzufügen (setProfessorNames)
-            - save
-
-        - remove Professor from Module                                      [Chris]
-
-        - Add a Module, Fakultät, Universität, Kurs (also KONSTRUKTOREN!)   [Chris]
-
-        - DELETE a Module, Fakultät, Universität, Kurs (also DESTRUKTOREN!) [Sarah]
-
-
-    DOKUMENTATION:
-    
-        - Introduction (Namen, Bibliotheken, KURZE beschreibung(?))                                                         [Falko]
-
-        - Datenmodell (Erklärung, Klassen (Was? Wie aufgebaut? Beziehungen untereinander?))                                 [Chris]
-
-        - repository-Schicht (Functions.java + Sinn und Zweck, ...Repository.java und wie sie die Functions.java nutzen)    [Niklas]
-
-        - Funktionen (Warum relevant?, SWT Orientiert)                                                                      [FUNKTIONSERSTELLER NACH EIGENEM ERMESSEN]
-
-        - aktualisiertes Klassendiagramm                                                                                    [Marvin]
-
-        - Diagramm der Programmarchitektur                                                                                  [Sarah]
-
-        - use case Diagramme (Funktionalitätenbezogen)                                                                      [FUNKTIONSERSTELLER NACH EIGENEM ERMESSEN]
-
-
-
-
-    Java-Dokumentation Format:
-
-        * saves the entity in the list
-        *
-        * @param entity object to save
-        * @param list the unique list which contains all items
-        *
-    
-
-
-
-    */
 }

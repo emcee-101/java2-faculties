@@ -1,8 +1,6 @@
 package de.fherfurt.faculty.data.classes;
 import de.fherfurt.faculty.data.classes.core.Basic;
 
-import java.util.*;
-
 public class Faculty extends Basic {
 
     public Faculty(String deanName, String name, String universityName) {
