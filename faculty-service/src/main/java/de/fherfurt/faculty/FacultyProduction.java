@@ -14,6 +14,7 @@ import de.fherfurt.faculty.data.repository.UniversityRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class FacultyProduction {
 
@@ -30,12 +31,50 @@ public class FacultyProduction {
     ModuleRepository moduleRepository;
 
 
-    public boolean isFacultynameValid(String name) {
-        return true; }
-
-
 // CODE HIER!!!!
 
+    /*
+     *
+     * filters an inputModuleList with specified parameters and returns the names of fitting modules in an outputModuleList
+     *
+     * @param courseName name of the course in which the module takes place
+     * @param numberOfSemester the semester in which the module takes place
+     *
+     */
+
+    public List<String> filterModulesBySemesterAndCourse (String courseName, int numberOfSemester) {
+        List<Module> inputModuleList;
+        inputModuleList = moduleRepository.getList();
+        List<String> outputModuleList = new ArrayList<String>();
+
+        for (Module anyModule : inputModuleList) {
+            if ((courseName.equals(anyModule.getCourseName())) && (numberOfSemester == anyModule.getSemester())) {
+                outputModuleList.add(anyModule.getName());
+            }
+        }
+        return outputModuleList;
+    }
+
+    /*
+     *
+     * filters an inputModuleList with a specified parameter and returns the names of fitting modules in an outputModuleList
+     *
+     * @param courseName name of the course in which the module takes place
+     *
+     */
+
+    public List<String> filterModulesByCourse (String courseName) {
+        List<Module> inputModuleList;
+        inputModuleList = moduleRepository.getList();
+        List<String> outputModuleList = new ArrayList<String>();
+
+        for (Module anyModule : inputModuleList) {
+            if (courseName.equals(anyModule.getCourseName())) {
+                outputModuleList.add(anyModule.getName());
+            }
+        }
+        return outputModuleList;
+    }
 
     // adds a new university to the repository, requires all properties of a university class
     public void addNewUniversity(String name, String presidentName) {
@@ -118,6 +157,122 @@ public class FacultyProduction {
     }
 
     /*
+     *
+     * returns the Name of the Head of this faculty
+     *
+     * @param facultyName name of faculty whose leader is to be searched
+     *
+     */
+   public String outputDeanByFaculty(String facultyName){
+
+        Faculty desiredFaculty = facultyRepository.findByName(facultyName);
+
+        String dean;
+
+        if (desiredFaculty == null){
+            dean = "Faculty not found";
+        }
+        else{
+            dean = desiredFaculty.getDeanName();
+        }
+
+        return dean;
+    }
+
+
+    /*
+     *
+     * updating the DescriptionDocument
+     *
+     * @param urlDescriptionDocument Document to update
+     * @param moduleName module name, in which the Document will be saved
+     */
+   public void updateDescriptionDocument(String urlDescriptionDocument, String moduleName){
+        Module module = moduleRepository.findByName(moduleName);
+        if (!module.getUrlDescriptionDocument().contains(urlDescriptionDocument)) {
+            String newUrlDescriptionDocument = module.getUrlDescriptionDocument();
+            module.setUrlDescriptionDocument(newUrlDescriptionDocument);
+        } else return;
+        moduleRepository.save(module);
+    }
+
+    /*
+     *
+     * validates the name of a course
+     *
+     * @param courseName: the name of the course, that is to be validated
+     *
+     */
+    public boolean isCourseNameValid(String courseName) {
+       Course course = courseRepository.findByName(courseName);
+       boolean isValid;
+
+       if(course == null){
+          isValid = false;
+       } else{
+           isValid = true;
+       }
+       return isValid;
+        }
+
+    /*
+     *
+     * validates the name of a faculty
+     *
+     * @param facultyName: the name of the faculty, that is to be validated
+     *
+     */
+    public boolean isFacultyNameValid(String facultyName) {
+        Faculty faculty = facultyRepository.findByName(facultyName);
+        boolean isValid;
+
+        if(faculty == null){
+            isValid = false;
+        } else{
+            isValid = true;
+        }
+        return isValid;
+    }
+
+    /*
+     *
+     * validates the name of a module
+     *
+     * @param moduleName: the name of the module, that is to be validated
+     *
+     */
+    public boolean isModuleNameValid(String moduleName) {
+        Module module = moduleRepository.findByName(moduleName);
+        boolean isValid;
+
+        if(module == null){
+            isValid = false;
+        } else{
+            isValid = true;
+        }
+        return isValid;
+    }
+
+    /*
+     *
+     * validates the name of a university
+     *
+     * @param moduleName: the name of the university, that is to be validated
+     *
+     */
+    public boolean isUniversityNameValid(String universityName) {
+        University university = universityRepository.findByName(universityName);
+        boolean isValid;
+
+        if(university == null){
+            isValid = false;
+        } else{
+            isValid = true;
+        }
+        return isValid;
+    }
+
+    /*
             BIS: 25. 3. End-Deadline
             Ziel: 20.03.2022
             Meeting: 16.03.2022
@@ -148,7 +303,7 @@ public class FacultyProduction {
 
 
     DOKUMENTATION:
-
+    
         - Introduction (Namen, Bibliotheken, KURZE beschreibung(?))                                                         [Falko]
 
         - Datenmodell (Erklärung, Klassen (Was? Wie aufgebaut? Beziehungen untereinander?))                                 [Chris]
@@ -165,6 +320,7 @@ public class FacultyProduction {
 
 
 
+
     Java-Dokumentation Format:
 
         * saves the entity in the list
@@ -172,7 +328,7 @@ public class FacultyProduction {
         * @param entity object to save
         * @param list the unique list which contains all items
         *
-
+    
 
 
 
