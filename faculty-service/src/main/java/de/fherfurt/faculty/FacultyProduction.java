@@ -205,15 +205,8 @@ public class FacultyProduction {
      */
     public boolean isCourseNameValid(String courseName) {
        Course course = courseRepository.findByName(courseName);
-       boolean isValid;
-
-       if(course == null){
-          isValid = false;
-       } else{
-           isValid = true;
-       }
-       return isValid;
-        }
+       return course != null;
+    }
 
     /*
      *

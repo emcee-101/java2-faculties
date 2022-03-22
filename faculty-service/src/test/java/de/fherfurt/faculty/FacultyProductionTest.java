@@ -137,8 +137,8 @@ class FacultyProductionTest {
         boolean testOutput1 = facultyProduction.isCourseNameValid(testCourseName1);
         boolean testOutput2 = facultyProduction.isCourseNameValid(testCourseName2);
         // THEN
-        assertTrue(testOutput1 == true);
-        assertFalse(testOutput2 == true);
+        assertTrue(testOutput1);
+        assertNotEquals(true, testOutput2);
     }
 
     @Test
@@ -150,8 +150,8 @@ class FacultyProductionTest {
         boolean testOutput1 = facultyProduction.isFacultyNameValid(testFacultyName1);
         boolean testOutput2 = facultyProduction.isFacultyNameValid(testFacultyName2);
         // THEN
-        assertTrue(testOutput1 == true);
-        assertFalse(testOutput2 == true);
+        assertTrue(testOutput1);
+        assertNotEquals(true, testOutput2);
     }
 
     @Test
@@ -163,8 +163,8 @@ class FacultyProductionTest {
         boolean testOutput1 = facultyProduction.isModuleNameValid(testModuleName1);
         boolean testOutput2 = facultyProduction.isModuleNameValid(testModuleName2);
         // THEN
-        assertTrue(testOutput1 == true);
-        assertFalse(testOutput2 == true);
+        assertTrue(testOutput1);
+        assertNotEquals(true, testOutput2);
     }
 
     @Test
@@ -176,8 +176,8 @@ class FacultyProductionTest {
         boolean testOutput1 = facultyProduction.isUniversityNameValid(testUniversityName1);
         boolean testOutput2 = facultyProduction.isUniversityNameValid(testUniversityName2);
         // THEN
-        assertTrue(testOutput1 == true);
-        assertFalse(testOutput2 == true);
+        assertTrue(testOutput1);
+        assertNotEquals(true, testOutput2);
     }
     
     @Test
