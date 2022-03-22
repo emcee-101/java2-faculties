@@ -134,8 +134,9 @@ public class FacultyProduction {
             List<String> newProfessorNames = module.getProfessorNames();
             newProfessorNames.add(professorName);
             module.setProfessorNames(newProfessorNames);
-        } else return;
-        moduleRepository.save(module);
+            moduleRepository.save(module);
+        }
+
     }
 
     /*
@@ -152,8 +153,8 @@ public class FacultyProduction {
             List<String> newProfessorNames = module.getProfessorNames();
             newProfessorNames.remove(professorName);
             module.setProfessorNames(newProfessorNames);
-        } else return;
-        moduleRepository.save(module);
+            moduleRepository.save(module);
+        }
     }
 
     /*
@@ -189,11 +190,10 @@ public class FacultyProduction {
      */
    public void updateDescriptionDocument(String urlDescriptionDocument, String moduleName){
         Module module = moduleRepository.findByName(moduleName);
-        if (!module.getUrlDescriptionDocument().contains(urlDescriptionDocument)) {
-            String newUrlDescriptionDocument = module.getUrlDescriptionDocument();
-            module.setUrlDescriptionDocument(newUrlDescriptionDocument);
-        } else return;
-        moduleRepository.save(module);
+        if (!module.getUrlDescriptionDocument().equals(urlDescriptionDocument)) {
+            module.setUrlDescriptionDocument(urlDescriptionDocument);
+            moduleRepository.save(module);
+        }
     }
 
     /*
