@@ -18,7 +18,7 @@ public class Faculty extends Basic {
         return deanName;
     }
 
-    public void setDecanName(String decanName) {
+    public void setDeanName(String deanName) {
         this.deanName = deanName;
     }
 
