@@ -134,8 +134,9 @@ public class FacultyProduction {
             List<String> newProfessorNames = module.getProfessorNames();
             newProfessorNames.add(professorName);
             module.setProfessorNames(newProfessorNames);
-        } else return;
-        moduleRepository.save(module);
+            moduleRepository.save(module);
+        }
+
     }
 
     /*
@@ -152,8 +153,8 @@ public class FacultyProduction {
             List<String> newProfessorNames = module.getProfessorNames();
             newProfessorNames.remove(professorName);
             module.setProfessorNames(newProfessorNames);
-        } else return;
-        moduleRepository.save(module);
+            moduleRepository.save(module);
+        }
     }
 
     /*
@@ -189,11 +190,10 @@ public class FacultyProduction {
      */
    public void updateDescriptionDocument(String urlDescriptionDocument, String moduleName){
         Module module = moduleRepository.findByName(moduleName);
-        if (!module.getUrlDescriptionDocument().contains(urlDescriptionDocument)) {
-            String newUrlDescriptionDocument = module.getUrlDescriptionDocument();
-            module.setUrlDescriptionDocument(newUrlDescriptionDocument);
-        } else return;
-        moduleRepository.save(module);
+        if (!module.getUrlDescriptionDocument().equals(urlDescriptionDocument)) {
+            module.setUrlDescriptionDocument(urlDescriptionDocument);
+            moduleRepository.save(module);
+        }
     }
 
     /*
@@ -205,15 +205,8 @@ public class FacultyProduction {
      */
     public boolean isCourseNameValid(String courseName) {
        Course course = courseRepository.findByName(courseName);
-       boolean isValid;
-
-       if(course == null){
-          isValid = false;
-       } else{
-           isValid = true;
-       }
-       return isValid;
-        }
+       return course != null;
+    }
 
     /*
      *
@@ -224,14 +217,7 @@ public class FacultyProduction {
      */
     public boolean isFacultyNameValid(String facultyName) {
         Faculty faculty = facultyRepository.findByName(facultyName);
-        boolean isValid;
-
-        if(faculty == null){
-            isValid = false;
-        } else{
-            isValid = true;
-        }
-        return isValid;
+        return faculty != null;
     }
 
     /*
@@ -243,14 +229,7 @@ public class FacultyProduction {
      */
     public boolean isModuleNameValid(String moduleName) {
         Module module = moduleRepository.findByName(moduleName);
-        boolean isValid;
-
-        if(module == null){
-            isValid = false;
-        } else{
-            isValid = true;
-        }
-        return isValid;
+        return module != null;
     }
 
     /*
@@ -262,14 +241,7 @@ public class FacultyProduction {
      */
     public boolean isUniversityNameValid(String universityName) {
         University university = universityRepository.findByName(universityName);
-        boolean isValid;
-
-        if(university == null){
-            isValid = false;
-        } else{
-            isValid = true;
-        }
-        return isValid;
+        return university != null;
     }
 
     /*
