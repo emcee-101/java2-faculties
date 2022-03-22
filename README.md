@@ -22,3 +22,5 @@ This service supplies faculty-related data to students and lecturers and functio
 ## Documentation
 
 https://github.com/fh-erfurt/ws2122-java1-team1-service3/wiki
+
+Alternatively you can find the documentation as PDF-document in the reports-directory
