@@ -217,14 +217,7 @@ public class FacultyProduction {
      */
     public boolean isFacultyNameValid(String facultyName) {
         Faculty faculty = facultyRepository.findByName(facultyName);
-        boolean isValid;
-
-        if(faculty == null){
-            isValid = false;
-        } else{
-            isValid = true;
-        }
-        return isValid;
+        return faculty != null;
     }
 
     /*
@@ -236,14 +229,7 @@ public class FacultyProduction {
      */
     public boolean isModuleNameValid(String moduleName) {
         Module module = moduleRepository.findByName(moduleName);
-        boolean isValid;
-
-        if(module == null){
-            isValid = false;
-        } else{
-            isValid = true;
-        }
-        return isValid;
+        return module != null;
     }
 
     /*
@@ -255,14 +241,7 @@ public class FacultyProduction {
      */
     public boolean isUniversityNameValid(String universityName) {
         University university = universityRepository.findByName(universityName);
-        boolean isValid;
-
-        if(university == null){
-            isValid = false;
-        } else{
-            isValid = true;
-        }
-        return isValid;
+        return university != null;
     }
 
     /*
