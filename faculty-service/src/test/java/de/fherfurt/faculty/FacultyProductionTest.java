@@ -1,7 +1,5 @@
 package de.fherfurt.faculty;
 
-import de.fherfurt.faculty.data.classes.Module;
-import de.fherfurt.faculty.data.classes.University;
 import de.fherfurt.faculty.data.repository.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

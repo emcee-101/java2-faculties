@@ -1,8 +1,6 @@
 package de.fherfurt.faculty.data.repository;
 
 import de.fherfurt.faculty.data.classes.Course;
-import de.fherfurt.faculty.data.classes.enums.CourseType;
-import org.junit.jupiter.api.Assertions;
 
 import java.util.*;
 
