@@ -15,4 +15,6 @@ public class Basic {
     public void setName(String name) {
         this.name = name;
     }
+
+
 }
