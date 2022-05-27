@@ -1,17 +1,49 @@
 package de.fherfurt.faculty.data.classes;
 
-import de.fherfurt.faculty.data.classes.core.Basic;
+
 import de.fherfurt.faculty.data.classes.enums.ModuleCertificationType;
 import de.fherfurt.faculty.data.classes.enums.ModuleType;
+
+import javax.persistence.*;
 import java.util.*;
 
-public class Module extends Basic {
+
+
+@Entity
+@Table(name = "module")
+public class Module {
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    public Module() {
+
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+
     private int semester;
     private List<String> professorNames;
     private ModuleType typeOfModule;
     private String urlDescriptionDocument;
     private ModuleCertificationType typeOfCertification;
     private String courseName;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
 
     public Module(String name,
                   int semester,
@@ -21,7 +53,7 @@ public class Module extends Basic {
                   ModuleCertificationType typeOfCertification,
                   String courseName){
 
-        super(name);
+        this.name = name;
         this.semester = semester;
         this.professorNames = professorNames;
         this.typeOfModule = typeOfModule;
