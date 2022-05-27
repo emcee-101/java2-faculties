@@ -4,7 +4,7 @@ import de.fherfurt.faculty.data.classes.core.Basic;
 
 import java.util.*;
 
-public class Functions<T extends Basic> {
+public class Functions<T> {
     /*
     * saves the entity in the list
     *
