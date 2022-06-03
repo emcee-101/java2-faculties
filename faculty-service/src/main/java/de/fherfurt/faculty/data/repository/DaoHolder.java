@@ -11,15 +11,18 @@ import javax.persistence.Persistence;
 
 public class DaoHolder {
 
-    static EntityManagerFactory factory;
-    static EntityManager em;
-    static GenericDao<Course> courseDao;
-    static GenericDao<Module> moduleDao;
-    static GenericDao<Faculty> facultyDao;
-    static GenericDao<University> universityDao;
+    // Singleton Instance
+    private static DaoHolder INSTANCE;
+
+    private EntityManagerFactory factory;
+    private EntityManager em;
+    private GenericDao<Course> courseDao;
+    private GenericDao<Module> moduleDao;
+    private GenericDao<Faculty> facultyDao;
+    private GenericDao<University> universityDao;
 
 
-    public static void init(){
+    private DaoHolder(){
 
         factory = Persistence.createEntityManagerFactory( "faculty_db" );
         em = factory.createEntityManager();
@@ -29,7 +32,22 @@ public class DaoHolder {
         facultyDao = new GenericDao<Faculty>( Faculty.class, em );
         universityDao = new GenericDao<University>( University.class, em );
 
+
     }
+
+
+    public static DaoHolder getInstance() {
+
+        //Singleton Pattern
+        if (INSTANCE == null) {
+            INSTANCE = new DaoHolder();
+        }
+
+        return INSTANCE;
+
+    }
+
+
 
 
 
