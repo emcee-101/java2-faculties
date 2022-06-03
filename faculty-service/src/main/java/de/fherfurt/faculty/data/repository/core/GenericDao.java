@@ -23,6 +23,39 @@ public class GenericDao <T>{
         return result;
         }
 
+    public T create (T entity)
+    {
+        getEntityManager().getTransaction().begin();
+        getEntityManager().persist( entity );
+        getEntityManager().getTransaction().commit();;
 
+        return entity;
+    }
+
+    public void delete( long id){
+
+        T entity = this.findById(id);
+        this.delete(entity);
+    }
+
+    public void delete( T entity) {
+
+        getEntityManager().getTransaction().begin();
+        getEntityManager().remove(entity);
+        getEntityManager().getTransaction().commit();
+
+    }
+
+
+
+    public T update( T entity) {
+
+        getEntityManager().getTransaction().begin();
+        final T savedEntity = getEntityManager().merge(entity);
+        getEntityManager().getTransaction().commit();
+
+        return savedEntity;
+
+    }
 
 }

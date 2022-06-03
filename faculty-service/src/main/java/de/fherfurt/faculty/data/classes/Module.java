@@ -29,7 +29,7 @@ public class Module {
 
 
     private int semester;
-    private List<String> professorNames;
+    private String professorNames;
     private ModuleType typeOfModule;
     private String urlDescriptionDocument;
     private ModuleCertificationType typeOfCertification;
@@ -47,7 +47,7 @@ public class Module {
 
     public Module(String name,
                   int semester,
-                  List<String> professorNames,
+                  String professorNames,
                   ModuleType typeOfModule,
                   String urlDescriptionDocument,
                   ModuleCertificationType typeOfCertification,
@@ -71,11 +71,11 @@ public class Module {
         this.semester = semester;
     }
 
-    public List<String> getProfessorNames() {
+    public String getProfessorNames() {
         return professorNames;
     }
 
-    public void setProfessorNames(List<String> professorNames) {
+    public void setProfessorNames(String professorNames) {
         this.professorNames = professorNames;
     }
 
