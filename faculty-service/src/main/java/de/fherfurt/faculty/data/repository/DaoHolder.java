@@ -35,6 +35,7 @@ public class DaoHolder {
 
     }
 
+    // DaoHolder.getInstance().gatCourseDao().create(entity);
 
     public static DaoHolder getInstance() {
 
@@ -48,9 +49,21 @@ public class DaoHolder {
     }
 
 
+    public GenericDao<Course> getCourseDao() {
+        return courseDao;
+    }
 
+    public GenericDao<Module> getModuleDao() {
+        return moduleDao;
+    }
 
+    public GenericDao<Faculty> getFacultyDao() {
+        return facultyDao;
+    }
 
+    public GenericDao<University> getUniversityDao() {
+        return universityDao;
+    }
 }
 
 
