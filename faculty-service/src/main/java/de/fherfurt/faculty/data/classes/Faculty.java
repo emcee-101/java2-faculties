@@ -2,6 +2,7 @@ package de.fherfurt.faculty.data.classes;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "faculty")
@@ -30,6 +31,9 @@ public class Faculty {
     private String universityName;
     private String name;
 
+    @OneToMany
+    private List<Course> courses;
+
     public String getName() {
         return name;
     }
@@ -53,5 +57,13 @@ public class Faculty {
 
     public void setUniversityName(String universityName) {
         this.universityName = universityName;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
     }
 }

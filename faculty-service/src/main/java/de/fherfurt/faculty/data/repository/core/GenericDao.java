@@ -1,6 +1,9 @@
 package de.fherfurt.faculty.data.repository.core;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import java.util.Collection;
+import java.util.List;
 
 public class GenericDao <T>{
 
@@ -15,6 +18,12 @@ public class GenericDao <T>{
 
     public EntityManager getEntityManager() {
         return entityManager;
+    }
+
+    public Class<T> getEntityClass(){
+
+        return persistentClass;
+
     }
 
     public T findById(final long id )
@@ -46,6 +55,27 @@ public class GenericDao <T>{
 
     }
 
+    public void delete( List<T> entries){
+
+        getEntityManager().getTransaction().begin();
+
+        for( T entry : entries){
+
+            getEntityManager().remove(entry);
+
+        }
+
+        getEntityManager().getTransaction().commit();
+
+    }
+
+    public Collection<T> findAll(){
+
+        Query query = getEntityManager().createQuery(
+                "SELECT * FROM " + getEntityClass().getCanonicalName());
+        return (Collection<T>) query.getResultList();
+
+    }
 
 
     public T update( T entity) {

@@ -7,6 +7,8 @@ import de.fherfurt.faculty.data.classes.enums.ModuleType;
 import javax.persistence.*;
 import java.util.*;
 
+import java.io.*;
+
 
 
 @Entity
@@ -35,6 +37,10 @@ public class Module {
     private ModuleCertificationType typeOfCertification;
     private String courseName;
     private String name;
+
+    @ManyToMany( mappedBy = "modules")
+    private List<Course> courses;
+
 
     public String getName() {
         return name;
@@ -75,8 +81,47 @@ public class Module {
         return professorNames;
     }
 
+    public List<String> getProfessorNamesAsList() {
+
+        String temp = this.professorNames;
+        List<String> professors;
+
+        String[] result = temp.split(",");
+
+        professors = Arrays.asList(result);
+
+        return professors;
+    }
+
+
     public void setProfessorNames(String professorNames) {
         this.professorNames = professorNames;
+    }
+
+    public void addProfessorName(String professorName) {
+
+        String temp = this.professorNames;
+
+        if (temp.isEmpty()){
+            // for example: "Haußen,"
+            temp = professorName+',';
+        }
+        else{
+            // for example: "Haußen,Schorcht,"
+            temp = temp + professorName + ',';
+        }
+
+        this.professorNames = temp;
+
+    }
+
+    public void removeProfessorName(String professorName){
+
+        String temp = this.professorNames;
+
+        temp = temp.replace(professorName+",", "");
+
+        this.professorNames = temp;
     }
 
     public ModuleType getTypeOfModule() {
@@ -109,5 +154,14 @@ public class Module {
 
     public void setCourseName(String courseName) {
         this.courseName = courseName;
+    }
+
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
     }
 }

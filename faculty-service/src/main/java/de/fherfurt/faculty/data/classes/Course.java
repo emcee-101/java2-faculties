@@ -4,6 +4,7 @@ package de.fherfurt.faculty.data.classes;
 import de.fherfurt.faculty.data.classes.enums.CourseType;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -27,6 +28,10 @@ public class Course {
 
     private String directorName;
     private String facultyName;
+
+    @ManyToMany
+    private List<Module> modules;
+
 
     private String name;
 
@@ -93,5 +98,13 @@ public class Course {
 
     public void setFacultyName(String facultyName) {
         this.facultyName = facultyName;
+    }
+
+    public List<Module> getModules() {
+        return modules;
+    }
+
+    public void setModules(List<Module> modules) {
+        this.modules = modules;
     }
 }
