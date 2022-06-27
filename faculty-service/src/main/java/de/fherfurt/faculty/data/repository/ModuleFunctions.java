@@ -3,9 +3,21 @@ package de.fherfurt.faculty.data.repository;
 import de.fherfurt.faculty.data.classes.Module;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class ModuleFunctions {
+
+    /*
+     *
+     * filters an inputModuleList with a specified parameter and returns the names of fitting modules in an outputModuleList
+     *
+     * @param courseName name of the course in which the module takes place
+     *
+     */
+    public Collection<Module> filterModulesByCourse (String courseId) {
+        return DaoHolder.getInstance().getModuleDao().findAllByFilter("courseId", courseId);
+    }
 
 
     /*

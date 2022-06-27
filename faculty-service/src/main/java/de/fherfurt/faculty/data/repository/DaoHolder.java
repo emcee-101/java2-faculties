@@ -1,9 +1,8 @@
 package de.fherfurt.faculty.data.repository;
 
-import de.fherfurt.faculty.data.classes.Course;
-import de.fherfurt.faculty.data.classes.Faculty;
-import de.fherfurt.faculty.data.classes.University;
-import de.fherfurt.faculty.data.repository.core.GenericDao;
+import de.fherfurt.faculty.data.classes.*;
+import de.fherfurt.faculty.data.classes.Module;
+import de.fherfurt.faculty.data.repository.core.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

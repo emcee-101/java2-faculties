@@ -1,7 +1,10 @@
 package de.fherfurt.faculty.data.repository.core;
 
+import com.sun.istack.Nullable;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.List;
 
@@ -73,6 +76,38 @@ public class GenericDao <T>{
 
         Query query = getEntityManager().createQuery(
                 "SELECT * FROM " + getEntityClass().getCanonicalName());
+        return (Collection<T>) query.getResultList();
+
+    }
+
+    public Collection<T> findAllByFilter(String attributeName, String attributeValue){
+        String queryString = String.format(
+                "SELECT * FROM %s WHERE %s = %s",
+                getEntityClass().getCanonicalName(),
+                attributeName,
+                attributeValue);
+
+        Query query = getEntityManager().createQuery(queryString);
+        return (Collection<T>) query.getResultList();
+
+    }
+
+    public Collection<T> findAllByJoinFilter(String joinTableName, @Nullable String attributeName, @Nullable String attributeValue){
+        String queryString = MessageFormat.format(
+                "SELECT * FROM {0} inner join {0}.{1}",
+                getEntityClass().getCanonicalName(),
+                joinTableName
+        );
+
+        if (!(attributeName == null) && !(attributeValue == null)) {
+            queryString = MessageFormat.format(
+                    "{0} WHERE {1} = {2}",
+                    queryString,
+                    attributeName,
+                    attributeValue);
+        }
+
+        Query query = getEntityManager().createQuery(queryString);
         return (Collection<T>) query.getResultList();
 
     }

@@ -1,6 +1,5 @@
 package de.fherfurt.faculty.data.classes;
 
-
 import de.fherfurt.faculty.data.classes.enums.CourseType;
 
 import javax.persistence.*;
