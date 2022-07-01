@@ -29,19 +29,36 @@ public class GenericDao <T>{
 
     }
 
-    public T findById(final long id )
-    {
-        final T result = getEntityManager().find( persistentClass, id );
-        return result;
-        }
-
     public T create (T entity)
     {
         getEntityManager().getTransaction().begin();
         getEntityManager().persist( entity );
-        getEntityManager().getTransaction().commit();;
+        getEntityManager().getTransaction().commit();
 
         return entity;
+    }
+
+    public Collection<T> create (Collection<T> entities)
+    {
+        getEntityManager().getTransaction().begin();
+
+        entities.forEach(entity->{
+            getEntityManager().persist( entity );
+        });
+
+        getEntityManager().getTransaction().commit();
+
+        return entities;
+    }
+
+    public T update( T entity) {
+
+        getEntityManager().getTransaction().begin();
+        final T savedEntity = getEntityManager().merge(entity);
+        getEntityManager().getTransaction().commit();
+
+        return savedEntity;
+
     }
 
     public void delete( long id){
@@ -72,6 +89,18 @@ public class GenericDao <T>{
 
     }
 
+    public void deleteAll()
+    {
+        Query query = getEntityManager().createQuery(
+                "DELETE * FROM " + getEntityClass().getCanonicalName());
+    }
+
+    public T findById(final long id )
+    {
+        final T result = getEntityManager().find( persistentClass, id );
+        return result;
+    }
+
     public Collection<T> findAll(){
 
         Query query = getEntityManager().createQuery(
@@ -89,10 +118,9 @@ public class GenericDao <T>{
 
         Query query = getEntityManager().createQuery(queryString);
         return (Collection<T>) query.getResultList();
-
     }
 
-    public Collection<T> findAllByFilterChris(
+    public Collection<T> findAllByJoinFilter(
             String joinTableName,
             @Nullable String attribute1Name,
             @Nullable String attribute1Value,
@@ -125,39 +153,6 @@ public class GenericDao <T>{
 
         Query query = getEntityManager().createQuery(queryString);
         return (Collection<T>) query.getResultList();
-    }
-
-
-
-    public Collection<T> findAllByJoinFilter(String joinTableName, @Nullable String attributeName, @Nullable String attributeValue){
-        String queryString = MessageFormat.format(
-                "SELECT * FROM {0} inner join {0}.{1}",
-                getEntityClass().getCanonicalName(),
-                joinTableName
-        );
-
-        if (!(attributeName == null) && !(attributeValue == null)) {
-            queryString = MessageFormat.format(
-                    "{0} WHERE {1} = {2}",
-                    queryString,
-                    attributeName,
-                    attributeValue);
-        }
-
-        Query query = getEntityManager().createQuery(queryString);
-        return (Collection<T>) query.getResultList();
-
-    }
-
-
-    public T update( T entity) {
-
-        getEntityManager().getTransaction().begin();
-        final T savedEntity = getEntityManager().merge(entity);
-        getEntityManager().getTransaction().commit();
-
-        return savedEntity;
-
     }
 
 }

@@ -21,14 +21,13 @@ public class Faculty {
         return id;
     }
 
-    public Faculty(String deanName, String name, String universityName) {
+    public Faculty(String deanName, String name, List<Course> courses) {
         this.name = name;
         this.deanName = deanName;
-        this.universityName = universityName;
+        this.courses=courses;
     }
 
     private String deanName;
-    private String universityName;
     private String name;
 
     @OneToMany
@@ -49,14 +48,6 @@ public class Faculty {
 
     public void setDeanName(String deanName) {
         this.deanName = deanName;
-    }
-
-    public String getUniversityName() {
-        return universityName;
-    }
-
-    public void setUniversityName(String universityName) {
-        this.universityName = universityName;
     }
 
     public List<Course> getCourses() {

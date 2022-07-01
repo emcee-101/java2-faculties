@@ -2,9 +2,8 @@ package de.fherfurt.faculty.data.repository;
 
 import de.fherfurt.faculty.data.classes.Module;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.Optional;
 
 public class ModuleFunctions {
 
@@ -16,7 +15,7 @@ public class ModuleFunctions {
      *
      */
     public Collection<Module> filterModulesByCourse (String courseId) {
-        return DaoHolder.getInstance().getModuleDao().findAllByFilterChris(
+        return DaoHolder.getInstance().getModuleDao().findAllByJoinFilter(
                 "module",
                 "courseId",
                 courseId,
@@ -31,11 +30,11 @@ public class ModuleFunctions {
      * filters an inputModuleList with specified parameters and returns the names of fitting modules in an outputModuleList
      *
      * @param courseName name of the course in which the module takes place
-     * @param numberOfSemester the semAester in which the module takes place
+     * @param numberOfSemester the semester in which the module takes place
      *
      */
     public Collection<Module> filterModulesBySemesterAndCourse (String courseId, int numberOfSemester) {
-        return DaoHolder.getInstance().getModuleDao().findAllByFilterChris(
+        return DaoHolder.getInstance().getModuleDao().findAllByJoinFilter(
                 "module",
                 "courseId",
                 courseId,
@@ -105,7 +104,7 @@ public class ModuleFunctions {
          * @param professorName professors name to delete
          * @param moduleName module name, from which the professor name will be deleted
          *
-         */
+
         public void removeProfessorFromModule(String professorName, String moduleName) {
             Module module = moduleRepository.findByName(moduleName);
             if (module.getProfessorNames().contains(professorName)) {
@@ -116,5 +115,5 @@ public class ModuleFunctions {
             }
         }
 
-
+        */
 }

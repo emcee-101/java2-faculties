@@ -10,40 +10,10 @@ import de.fherfurt.faculty.data.classes.enums.ModuleType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class TestData {
-    private final List<Course> courses = new ArrayList<Course>(Arrays.asList(
-            new Course(
-                    "BIW",
-                    7,
-                    -1,
-                    CourseType.BACHELOR,
-                    "Meister",
-                    "KA"
-            ),
-            new Course(
-                    "AI",
-                    7,
-                    -1,
-                    CourseType.BACHELOR,
-                    "Herwig",
-                    "AI-GET"
-            )
-    ));
-
-    private final List<Faculty> faculties = new ArrayList<Faculty>(Arrays.asList(
-            new Faculty(
-                    "decan1",
-                    "KA",
-                    "FH-Erfurt"
-            ),
-            new Faculty(
-                    "decan2",
-                    "AI-GET",
-                    "FH-Erfurt"
-            )
-    ));
 
     private final List<Module> modules = new ArrayList<Module>(Arrays.asList(
             new Module(
@@ -66,14 +36,55 @@ public class TestData {
             )
     ));
 
+    private final List<Course> courses = new ArrayList<Course>(Arrays.asList(
+            new Course(
+                    "BIW",
+                    7,
+                    -1,
+                    CourseType.BACHELOR,
+                    "Meister",
+                    "KA",
+                    new ArrayList<Module>(List.of(modules.get(1)))
+            ),
+            new Course(
+                    "AI",
+                    7,
+                    -1,
+                    CourseType.BACHELOR,
+                    "Herwig",
+                    "AI-GET",
+                    new ArrayList<Module>(List.of())
+            )
+    ));
+
+    private final List<Faculty> faculties = new ArrayList<Faculty>(Arrays.asList(
+            new Faculty(
+                    "decan1",
+                    "KA",
+                    new ArrayList<Course>(List.of(courses.get(0)))
+            ),
+            new Faculty(
+                    "decan2",
+                    "AI-GET",
+                    new ArrayList<Course>(List.of(courses.get(1)))
+            ),
+            new Faculty(
+                    "decan3",
+                    "SOZI",
+                    new ArrayList<Course>(List.of(courses.get(2)))
+            )
+    ));
+
     private final List<University> universities = new ArrayList<University>(Arrays.asList(
             new University(
                     "FH-Erfurt",
-                    "president"
+                    "president",
+                    new ArrayList<Faculty>(List.of(faculties.get(0), faculties.get(1)))
             ),
             new University(
                     "UNI-Erfurt",
-                    "uni president"
+                    "uni president",
+                    new ArrayList<Faculty>(List.of(faculties.get(2)))
             )
     ));
 

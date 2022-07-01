@@ -1,6 +1,7 @@
 package de.fherfurt.faculty;
 
 import de.fherfurt.faculty.data.repository.*;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,24 +10,22 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.List;
 
-class FacultyProductionTest {
+class FacultyFunctionsTest {
 
-    UniversityRepository universityRepository;
-    FacultyRepository facultyRepository;
-    CourseRepository courseRepository;
-    ModuleRepository moduleRepository;
-    FacultyProduction facultyProduction;
     TestData testData;
 
     @BeforeEach
     void init() {
-        // GIVEN
+        DaoHolder.getInstance().getCourseDao().deleteAll();
+        DaoHolder.getInstance().getFacultyDao().deleteAll();
+        DaoHolder.getInstance().getModuleDao().deleteAll();
+        DaoHolder.getInstance().getUniversityDao().deleteAll();
+
         testData = new TestData();
-        universityRepository = new UniversityRepository(testData.getUniversities());
-        facultyRepository = new FacultyRepository(testData.getFaculties());
-        courseRepository = new CourseRepository(testData.getCourses());
-        moduleRepository = new ModuleRepository(testData.getModules());
-        facultyProduction = new FacultyProduction(universityRepository, facultyRepository, courseRepository, moduleRepository);
+        DaoHolder.getInstance().getCourseDao().create(testData.getCourses());
+        DaoHolder.getInstance().getFacultyDao().create(testData.getFaculties());
+        DaoHolder.getInstance().getModuleDao().create(testData.getModules());
+        DaoHolder.getInstance().getUniversityDao().create(testData.getUniversities());
     }
 
     @Test

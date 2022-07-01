@@ -49,7 +49,8 @@ public class Course {
                   float numerusClausus,
                   CourseType typeOfCourse,
                   String directorName,
-                  String facultyName) {
+                  String facultyName,
+                  List<Module> modules) {
         this.name = name;
 
         this.numberOfSemesters = numberOfSemesters;
@@ -57,6 +58,7 @@ public class Course {
         this.typeOfCourse = typeOfCourse;
         this.directorName = directorName;
         this.facultyName = facultyName;
+        this.modules = modules;
     }
 
     public int getNumberOfSemesters() {
