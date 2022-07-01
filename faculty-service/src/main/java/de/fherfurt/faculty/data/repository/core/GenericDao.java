@@ -128,6 +128,7 @@ public class GenericDao <T>{
     }
 
 
+
     public Collection<T> findAllByJoinFilter(String joinTableName, @Nullable String attributeName, @Nullable String attributeValue){
         String queryString = MessageFormat.format(
                 "SELECT * FROM {0} inner join {0}.{1}",
