@@ -1,27 +1,65 @@
 package de.fherfurt.faculty.data.classes;
 
-import de.fherfurt.faculty.data.classes.core.Basic;
+
 import de.fherfurt.faculty.data.classes.enums.ModuleCertificationType;
 import de.fherfurt.faculty.data.classes.enums.ModuleType;
+
+import javax.persistence.*;
 import java.util.*;
 
-public class Module extends Basic {
+import java.io.*;
+
+
+
+@Entity
+@Table(name = "module")
+public class Module {
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    public Module() {
+
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+
     private int semester;
-    private List<String> professorNames;
+    private String professorNames;
     private ModuleType typeOfModule;
     private String urlDescriptionDocument;
     private ModuleCertificationType typeOfCertification;
     private String courseName;
+    private String name;
+
+    @ManyToMany( mappedBy = "modules")
+    private List<Course> courses;
+
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
 
     public Module(String name,
                   int semester,
-                  List<String> professorNames,
+                  String professorNames,
                   ModuleType typeOfModule,
                   String urlDescriptionDocument,
                   ModuleCertificationType typeOfCertification,
                   String courseName){
 
-        super(name);
+        this.name = name;
         this.semester = semester;
         this.professorNames = professorNames;
         this.typeOfModule = typeOfModule;
@@ -39,12 +77,51 @@ public class Module extends Basic {
         this.semester = semester;
     }
 
-    public List<String> getProfessorNames() {
+    public String getProfessorNames() {
         return professorNames;
     }
 
-    public void setProfessorNames(List<String> professorNames) {
+    public List<String> getProfessorNamesAsList() {
+
+        String temp = this.professorNames;
+        List<String> professors;
+
+        String[] result = temp.split(",");
+
+        professors = Arrays.asList(result);
+
+        return professors;
+    }
+
+
+    public void setProfessorNames(String professorNames) {
         this.professorNames = professorNames;
+    }
+
+    public void addProfessorName(String professorName) {
+
+        String temp = this.professorNames;
+
+        if (temp.isEmpty()){
+            // for example: "Haußen,"
+            temp = professorName+',';
+        }
+        else{
+            // for example: "Haußen,Schorcht,"
+            temp = temp + professorName + ',';
+        }
+
+        this.professorNames = temp;
+
+    }
+
+    public void removeProfessorName(String professorName){
+
+        String temp = this.professorNames;
+
+        temp = temp.replace(professorName+",", "");
+
+        this.professorNames = temp;
     }
 
     public ModuleType getTypeOfModule() {
@@ -77,5 +154,14 @@ public class Module extends Basic {
 
     public void setCourseName(String courseName) {
         this.courseName = courseName;
+    }
+
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
     }
 }

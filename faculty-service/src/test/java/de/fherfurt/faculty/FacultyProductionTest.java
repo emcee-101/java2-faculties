@@ -70,7 +70,7 @@ class FacultyProductionTest {
     @Test
     void removeProfessorFromModule() {
         // GIVEN
-        String professorNameToDelete = testData.getModules().get(0).getProfessorNames().get(0);
+        String professorNameToDelete = testData.getModules().get(0).getProfessorNames();
         String moduleName = testData.getModules().get(0).getName();
 
         assertTrue(moduleRepository.findByName(moduleName).getProfessorNames().contains(professorNameToDelete));
