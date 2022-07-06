@@ -19,7 +19,7 @@ public class TestData {
             new Module(
                     "java1",
                     3,
-                    "prof1,prof3",
+                    "prof1,prof3,",
                     ModuleType.COMPULSORY,
                     "doc1.pdf",
                     ModuleCertificationType.PROJECT,
@@ -28,7 +28,7 @@ public class TestData {
             new Module(
                     "mi",
                     5,
-                    "prof1,prof2",
+                    "prof1,prof2,",
                     ModuleType.SPECIALIZATION,
                     "doc2.pdf",
                     ModuleCertificationType.EXAMANDPROJECT,

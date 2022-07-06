@@ -8,7 +8,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
+
+import de.fherfurt.faculty.data.classes.*;
+import de.fherfurt.faculty.data.classes.Module;
 
 class FacultyFunctionsTest {
 
@@ -55,15 +60,32 @@ class FacultyFunctionsTest {
 
     @Test
     void addProfessorToModule() {
-        // GIVEN
-        String newProfessorName = "new prof";
-        String moduleName = testData.getModules().get(0).getName();
 
-        assertFalse(moduleRepository.findByName(moduleName).getProfessorNames().contains(newProfessorName));
+        // GIVEN
+        String newProfessorName = "Schorcht";
+
+        Collection<Module> modules =  DaoHolder.getInstance()
+                                               .getModuleDao()
+                                               .findAllByFilter("name", "java1");
+        Module module = modules.stream()
+                               .findFirst()
+                               .get();
+
+        long idOfModule = module.getId();
+        List<String> oldNameList = module.getProfessorNamesAsList();
+        
         // WHEN
-        facultyProduction.addProfessorToModule(newProfessorName, moduleName);
+        ModuleFunctions.addProfessorToModule(newProfessorName, idOfModule);
+
         // THEN
-        assertTrue(moduleRepository.findByName(moduleName).getProfessorNames().contains(newProfessorName));
+        Module updatedModule =  DaoHolder.getInstance()
+                                         .getModuleDao()
+                                         .findById(idOfModule);
+
+        oldNameList.add(newProfessorName);
+    
+        assertTrue(oldNameList == updatedModule.getProfessorNamesAsList());
+
     }
 
     @Test

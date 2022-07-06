@@ -64,36 +64,25 @@ public class ModuleFunctions {
         }
     }
 
-    /*
-     *
-     * adds a ProfessorName to the Module-ProfessorNames
-     *
-     * @param professorName professors name to add
-     * @param moduleName module name, in which the professor name will be saved
-     *
+
+    /**
+     * attaches a Name of a Professor to the List of Professors included in the Module Data Structure
+     * 
+     * @param professorName     name to be added
+     * @param id                id of Module in DB
+     * @return                  the edited Module
      */
-    public void addProfessorToModule(String professorName, String moduleName) {
+    public static Module addProfessorToModule(String professorName, long id) {
 
-        Collection<Module> modules = DaoHolder.getInstance()
-                .getModuleDao()
-                .findAllByFilter("name", "moduleName");
+        Module module = DaoHolder.getInstance()
+                                 .getModuleDao()
+                                 .findById(id);
 
-        Optional<Module> nullableModule = modules.stream()
-                .findFirst();
+        module.addProfessorName(professorName);
 
-        if (nullableModule.isPresent()) {
-
-            Module module = nullableModule.get();
-
-            module.addProfessorName(professorName);
-
-            Module updatedModule = DaoHolder.getInstance()
-                    .getModuleDao()
-                    .update(module);
-        }
-        else{
-            System.out.println("an error has occured while accessing the Module data :(");
-        }
+        return DaoHolder.getInstance()
+                        .getModuleDao()
+                        .update(module);
 
     }
 
