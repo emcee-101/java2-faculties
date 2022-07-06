@@ -39,7 +39,7 @@ public class TestData {
     private final List<Course> courses = new ArrayList<Course>(Arrays.asList(
             new Course(
                     "BIW",
-                    7,
+                    6,
                     -1,
                     CourseType.BACHELOR,
                     "Meister",
