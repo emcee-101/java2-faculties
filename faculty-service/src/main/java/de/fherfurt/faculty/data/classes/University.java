@@ -24,8 +24,9 @@ public class University {
     private String presidentName;
     private String name;
 
-    @OneToMany
+    @OneToMany( mappedBy = "university")
     private List<Faculty> faculties;
+
 
     public String getName() {
         return name;

@@ -35,7 +35,6 @@ public class Module {
     private ModuleType typeOfModule;
     private String urlDescriptionDocument;
     private ModuleCertificationType typeOfCertification;
-    private String courseName;
     private String name;
 
     @ManyToMany( mappedBy = "modules")
@@ -56,8 +55,7 @@ public class Module {
                   String professorNames,
                   ModuleType typeOfModule,
                   String urlDescriptionDocument,
-                  ModuleCertificationType typeOfCertification,
-                  String courseName){
+                  ModuleCertificationType typeOfCertification){
 
         this.name = name;
         this.semester = semester;
@@ -65,7 +63,6 @@ public class Module {
         this.typeOfModule = typeOfModule;
         this.urlDescriptionDocument = urlDescriptionDocument;
         this.typeOfCertification = typeOfCertification;
-        this.courseName = courseName;
 
     };
 
@@ -146,14 +143,6 @@ public class Module {
 
     public void setTypeOfCertification(ModuleCertificationType typeOfCertification) {
         this.typeOfCertification = typeOfCertification;
-    }
-
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
     }
 
 
