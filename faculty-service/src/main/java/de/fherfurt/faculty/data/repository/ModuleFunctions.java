@@ -7,11 +7,11 @@ import java.util.Optional;
 
 public class ModuleFunctions {
 
-    /*
+    /**
      *
      * filters an inputModuleList with a specified parameter and returns the names of fitting modules in an outputModuleList
      *
-     * @param courseName name of the course in which the module takes place
+     * @param courseId id of the course in which the module takes place
      *
      */
     public Collection<Module> filterModulesByCourse (String courseId) {
@@ -25,11 +25,11 @@ public class ModuleFunctions {
     }
 
 
-    /*
+    /**
      *
      * filters an inputModuleList with specified parameters and returns the names of fitting modules in an outputModuleList
      *
-     * @param courseName name of the course in which the module takes place
+     * @param courseId id of the course in which the module takes place
      * @param numberOfSemester the semester in which the module takes place
      *
      */
@@ -43,24 +43,24 @@ public class ModuleFunctions {
         );
     }
 
-    public void updateDescriptionDocument(String urlDescriptionDocument, String moduleName){
-        Collection<Module> modules = DaoHolder.getInstance().getModuleDao().findAllByFilter("name", moduleName);
+    /**
+     *
+     * updates UrlDescriptionDocument of module with the given Id
+     *
+     * @param urlDescriptionDocument new urlDescriptionDocument
+     * @param moduleId id of the module in which the urlDescriptionDocument is to be updated
+     *
+     */
+    public static void updateDescriptionDocument(String urlDescriptionDocument, long moduleId){
+        Module module = DaoHolder.getInstance().getModuleDao().findById(moduleId);
 
-        Optional<Module> nullableModule = modules.stream().findFirst();
+        if(!module.getUrlDescriptionDocument().equals(urlDescriptionDocument)) {
+            module.setUrlDescriptionDocument(urlDescriptionDocument);
 
-        if(nullableModule.isPresent()) {
-            Module module = nullableModule.get();
-            if(!module.getUrlDescriptionDocument().equals(urlDescriptionDocument)) {
-                module.setUrlDescriptionDocument(urlDescriptionDocument);
-
-                DaoHolder.getInstance().getModuleDao().update(module);
-            }
-            else{
-                System.out.println("Error: Description document could not be updated!");
-            }
+            DaoHolder.getInstance().getModuleDao().update(module);
         }
         else{
-            System.out.println("Error: Module could not be found!");
+            System.out.println("Error: Description document could not be updated!");
         }
     }
 
@@ -84,25 +84,24 @@ public class ModuleFunctions {
                         .getModuleDao()
                         .update(module);
 
-    }
+    };
 
-        /*
+        /**
          *
          * deletes a ProfessorName from the Module-ProfessorNames
          *
          * @param professorName professors name to delete
-         * @param moduleName module name, from which the professor name will be deleted
+         * @param id module id, from which the professor name will be deleted
          *
+         */
+        public static Module removeProfessorFromModule(String professorName, long id) {
 
-        public void removeProfessorFromModule(String professorName, String moduleName) {
-            Module module = moduleRepository.findByName(moduleName);
-            if (module.getProfessorNames().contains(professorName)) {
-                String newProfessorNames = module.getProfessorNames();
-                //newProfessorNames.remove(professorName);
-                module.setProfessorNames(newProfessorNames);
-                moduleRepository.save(module);
+            Module module = DaoHolder.getInstance().getModuleDao().findById(id);
+
+            module.removeProfessorName(professorName);
+
+            return DaoHolder.getInstance().getModuleDao().update(module);
+
             }
-        }
+};
 
-        */
-}

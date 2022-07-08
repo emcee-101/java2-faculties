@@ -16,7 +16,6 @@ public class Faculty {
 
     }
 
-
     public Long getId() {
         return id;
     }
@@ -30,8 +29,11 @@ public class Faculty {
     private String deanName;
     private String name;
 
-    @OneToMany
+    @OneToMany( mappedBy = "faculty")
     private List<Course> courses;
+
+    @ManyToOne
+    private University university;
 
     public String getName() {
         return name;

@@ -69,6 +69,32 @@ public class GenericDAOTest {
 
     }
 
+    @Test
+    void findAll(){
 
-    
+        // GIVEN
+        final Collection<Course> allCourses = DaoHolder.getInstance().getCourseDao().create(testData.getCourses());
+
+        // WHEN
+        final Collection<Course> foundCourses = DaoHolder.getInstance().getCourseDao().findAll();
+
+        // THEN
+        assertSame(allCourses, foundCourses);
+    }
+
+    @Test
+    void deleteAll(){
+        // GIVEN
+        DaoHolder.getInstance().getCourseDao().create(testData.getCourses());
+
+        // WHEN
+        DaoHolder.getInstance().getCourseDao().deleteAll();
+        final Collection<Course> foundCourses = DaoHolder.getInstance().getCourseDao().findAll();
+
+        // THEN
+        assertNull(foundCourses);
+
+    }
+
+
 }

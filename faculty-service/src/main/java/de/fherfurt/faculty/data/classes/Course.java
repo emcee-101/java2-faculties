@@ -26,11 +26,12 @@ public class Course {
     private CourseType typeOfCourse;
 
     private String directorName;
-    private String facultyName;
 
     @ManyToMany
     private List<Module> modules;
 
+    @ManyToOne
+    private Faculty faculty;
 
     private String name;
 
@@ -49,7 +50,6 @@ public class Course {
                   float numerusClausus,
                   CourseType typeOfCourse,
                   String directorName,
-                  String facultyName,
                   List<Module> modules) {
         this.name = name;
 
@@ -57,7 +57,6 @@ public class Course {
         this.numerusClausus = numerusClausus;
         this.typeOfCourse = typeOfCourse;
         this.directorName = directorName;
-        this.facultyName = facultyName;
         this.modules = modules;
     }
 
@@ -91,14 +90,6 @@ public class Course {
 
     public void setDirectorName(String directorName) {
         this.directorName = directorName;
-    }
-
-    public String getFacultyName() {
-        return facultyName;
-    }
-
-    public void setFacultyName(String facultyName) {
-        this.facultyName = facultyName;
     }
 
     public List<Module> getModules() {
