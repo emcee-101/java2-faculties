@@ -40,8 +40,11 @@ public class GenericDAOTest {
 
         DaoHolder.getInstance().getFacultyDao().create(testData.getFaculties());
         DaoHolder.getInstance().getCourseDao().create(testData.getCourses());
+        Collection<Faculty> testFaculty = DaoHolder.getInstance().getFacultyDao().findAllByFilter("Name", "AI");
 
-        Course additionalTestCourse1 = new Course("Bogus", 6, true, CourseType.BACHELOR, "Pringles", faculty, modules); 
+        // only one here :()
+
+        Course additionalTestCourse1 = new Course("Bogus", 6, -1, true, CourseType.BACHELOR, "Pringles", ); 
         DaoHolder.getInstance().getCourseDao().create(additionalTestCourse1);
         
         // WHEN
