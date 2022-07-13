@@ -10,10 +10,60 @@ import de.fherfurt.faculty.data.classes.enums.ModuleType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 public class TestData {
+
+        private final List<University> universities = new ArrayList<University>(Arrays.asList(
+                new University(
+                        "FH-Erfurt",
+                        "president"
+                ),
+                new University(
+                        "UNI-Erfurt",
+                        "uni president"
+                )
+        ));        
+
+
+        private final List<Faculty> faculties = new ArrayList<Faculty>(Arrays.asList(
+                new Faculty(
+                        "decan1",
+                        "KA",
+                        universities.get(0)
+                ),
+                new Faculty(
+                        "decan2",
+                        "AI-GET",
+                        universities.get(0)
+                ),
+                new Faculty(
+                        "decan3",
+                        "SOZI",
+                        universities.get(0)
+                )
+        ));
+    
+
+        private final List<Course> courses = new ArrayList<Course>(Arrays.asList(
+                new Course(
+                        "BIW",
+                        6,
+                        -1.0f,
+                        CourseType.BACHELOR,
+                        "Meister",
+                        faculties.get(0)
+                ),
+                new Course(
+                        "AI",
+                        7,
+                        -1.0f,
+                        CourseType.BACHELOR,
+                        "Herwig",
+                        faculties.get(1)
+                )
+        ));
+    
 
     private final List<Module> modules = new ArrayList<Module>(Arrays.asList(
             new Module(
@@ -23,8 +73,7 @@ public class TestData {
                     ModuleType.COMPULSORY,
                     "doc1.pdf",
                     ModuleCertificationType.PROJECT,
-                    "ai"
-            ),
+                    new ArrayList<Course>(List.of(courses.get(1)))            ),
             new Module(
                     "mi",
                     5,
@@ -32,61 +81,12 @@ public class TestData {
                     ModuleType.SPECIALIZATION,
                     "doc2.pdf",
                     ModuleCertificationType.EXAMANDPROJECT,
-                    "ai"
-            )
-    ));
-
-    private final List<Course> courses = new ArrayList<Course>(Arrays.asList(
-            new Course(
-                    "BIW",
-                    6,
-                    -1,
-                    CourseType.BACHELOR,
-                    "Meister",
-                    "KA",
-                    new ArrayList<Module>(List.of(modules.get(1)))
-            ),
-            new Course(
-                    "AI",
-                    7,
-                    -1,
-                    CourseType.BACHELOR,
-                    "Herwig",
-                    "AI-GET",
-                    new ArrayList<Module>(List.of())
-            )
-    ));
-
-    private final List<Faculty> faculties = new ArrayList<Faculty>(Arrays.asList(
-            new Faculty(
-                    "decan1",
-                    "KA",
-                    new ArrayList<Course>(List.of(courses.get(0)))
-            ),
-            new Faculty(
-                    "decan2",
-                    "AI-GET",
                     new ArrayList<Course>(List.of(courses.get(1)))
-            ),
-            new Faculty(
-                    "decan3",
-                    "SOZI",
-                    new ArrayList<Course>(List.of(courses.get(2)))
             )
     ));
 
-    private final List<University> universities = new ArrayList<University>(Arrays.asList(
-            new University(
-                    "FH-Erfurt",
-                    "president",
-                    new ArrayList<Faculty>(List.of(faculties.get(0), faculties.get(1)))
-            ),
-            new University(
-                    "UNI-Erfurt",
-                    "uni president",
-                    new ArrayList<Faculty>(List.of(faculties.get(2)))
-            )
-    ));
+
+
 
     public List<Course> getCourses() {
         return courses;
@@ -102,5 +102,9 @@ public class TestData {
 
     public List<University> getUniversities() {
         return universities;
+    }
+
+    public static TestData getTestData(){
+        return new TestData();
     }
 }

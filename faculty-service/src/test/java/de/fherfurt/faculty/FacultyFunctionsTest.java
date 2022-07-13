@@ -27,10 +27,10 @@ class FacultyFunctionsTest {
         DaoHolder.getInstance().getUniversityDao().deleteAll();
 
         testData = new TestData();
-        DaoHolder.getInstance().getCourseDao().create(testData.getCourses());
-        DaoHolder.getInstance().getFacultyDao().create(testData.getFaculties());
-        DaoHolder.getInstance().getModuleDao().create(testData.getModules());
         DaoHolder.getInstance().getUniversityDao().create(testData.getUniversities());
+        DaoHolder.getInstance().getFacultyDao().create(testData.getFaculties());
+        DaoHolder.getInstance().getCourseDao().create(testData.getCourses());
+        DaoHolder.getInstance().getModuleDao().create(testData.getModules());
     }
 
 
