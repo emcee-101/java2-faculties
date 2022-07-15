@@ -44,7 +44,7 @@ public class GenericDAOTest {
     void findAllByFilter(){
 
         // GIVEN
-        long IDforTestFaculty = testData.getFaculties().get(0).getId();
+        long IDforTestFaculty = savedFaculties.get(0).getId();
         Faculty testFaculty = DaoHolder.getInstance().getFacultyDao().findById(IDforTestFaculty);
 
         Course additionalTestCourse1 = new Course("Bogus", 6, -1.0f, CourseType.BACHELOR, "Pringles", testFaculty); 
@@ -72,7 +72,7 @@ public class GenericDAOTest {
         List<String> possibleOutcome2 = Arrays.asList(new String[]{"BIW", "Bogus"});
 
         assertTrue((listOfNamesSix == possibleOutcome1) || (listOfNamesSix == possibleOutcome2));
-        assertNull(listOfNamesFour);
+        assertTrue(listOfNamesFour.isEmpty());
         assertTrue(savedTestCourse.getId() == foundCoursesNamedBogus.stream().findFirst().get().getId());
 
     }
@@ -92,14 +92,13 @@ public class GenericDAOTest {
 
     @Test
     void deleteAll(){
-        // GIVEN
-        Collection<Course> testCourses = testData.getCourses();
 
         // WHEN
+        DaoHolder.getInstance().getCourseDao().deleteAll();
         final Collection<Course> foundCourses = DaoHolder.getInstance().getCourseDao().findAll();
 
         // THEN
-        assertNull(testCourses == foundCourses);
+        assertTrue(foundCourses.isEmpty());
 
     }
 
