@@ -3,7 +3,6 @@ package de.fherfurt.faculty.data.repository;
 import de.fherfurt.faculty.data.classes.Module;
 
 import java.util.Collection;
-import java.util.Optional;
 
 public class ModuleFunctions {
 

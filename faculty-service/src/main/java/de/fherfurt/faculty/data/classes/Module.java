@@ -7,8 +7,6 @@ import de.fherfurt.faculty.data.classes.enums.ModuleType;
 import javax.persistence.*;
 import java.util.*;
 
-import java.io.*;
-
 
 
 @Entity

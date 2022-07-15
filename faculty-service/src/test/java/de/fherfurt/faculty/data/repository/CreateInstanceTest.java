@@ -2,7 +2,6 @@ package de.fherfurt.faculty.data.repository;
 
 import de.fherfurt.faculty.data.classes.Course;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
