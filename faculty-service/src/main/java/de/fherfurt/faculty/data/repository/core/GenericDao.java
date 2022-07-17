@@ -92,7 +92,7 @@ public class GenericDao <T>{
     public void deleteAll()
     {
         Query query = getEntityManager().createQuery(
-                "DELETE * FROM " + getEntityClass().getCanonicalName());
+                "DELETE FROM " + getEntityClass().getCanonicalName());
     }
 
     public T findById(final long id )
@@ -104,17 +104,16 @@ public class GenericDao <T>{
     public Collection<T> findAll(){
 
         Query query = getEntityManager().createQuery(
-                "SELECT * FROM " + getEntityClass().getCanonicalName());
+                "FROM " + getEntityClass().getCanonicalName());
         return (Collection<T>) query.getResultList();
 
     }
 
+    //select module0_.id as id1_3_, module0_.name as name2_3_, module0_.professorNames as professo3_3_, module0_.semester as semester4_3_, module0_.typeOfCertification as typeofce5_3_, module0_.typeOfModule as typeofmo6_3_, module0_.urlDescriptionDocument as urldescr7_3_ from module module0_ where module0_.name=java1 [42122-212]
+
     public Collection<T> findAllByFilter(String attributeName, String attributeValue){
-        String queryString = String.format(
-                "SELECT * FROM %s WHERE %s = %s",
-                getEntityClass().getCanonicalName(),
-                attributeName,
-                attributeValue);
+        String queryString = "FROM " + getEntityClass().getCanonicalName() + " WHERE " + attributeName + " = \'" + attributeValue + "\'";
+        System.out.println(queryString);
 
         Query query = getEntityManager().createQuery(queryString);
         return (Collection<T>) query.getResultList();
@@ -128,14 +127,14 @@ public class GenericDao <T>{
             @Nullable String attribute2Value
     ){
         String queryString = MessageFormat.format(
-                "SELECT * FROM {0} inner join {0}.{1}",
+                "FROM {0} inner join {0}.{1}",
                 getEntityClass().getCanonicalName(),
                 joinTableName
         );
 
         if (!(attribute1Name == null) && !(attribute1Value == null)) {
             queryString = MessageFormat.format(
-                    "{0} WHERE {1} = {2}",
+                    "{0} WHERE {1} = \'{2}\'",
                     queryString,
                     attribute1Name,
                     attribute1Value
@@ -144,7 +143,7 @@ public class GenericDao <T>{
 
         if (!(attribute2Name == null) && !(attribute2Value == null)) {
             queryString = MessageFormat.format(
-                    "{0} AND {1} = {2}",
+                    "{0} AND {1} = \'{2}\'",
                     queryString,
                     attribute2Name,
                     attribute2Value
