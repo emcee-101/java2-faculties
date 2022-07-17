@@ -109,7 +109,12 @@ public class GenericDao <T>{
 
     }
 
-    //select module0_.id as id1_3_, module0_.name as name2_3_, module0_.professorNames as professo3_3_, module0_.semester as semester4_3_, module0_.typeOfCertification as typeofce5_3_, module0_.typeOfModule as typeofmo6_3_, module0_.urlDescriptionDocument as urldescr7_3_ from module module0_ where module0_.name=java1 [42122-212]
+    public T findOneByFilter(String attributeName, String attributeValue){
+
+        Collection<T> objects = findAllByFilter(attributeName, attributeValue);
+
+        return (T) objects.stream().findFirst().get();
+    }
 
     public Collection<T> findAllByFilter(String attributeName, String attributeValue){
         String queryString = "FROM " + getEntityClass().getCanonicalName() + " WHERE " + attributeName + " = \'" + attributeValue + "\'";
