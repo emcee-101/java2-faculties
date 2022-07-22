@@ -7,14 +7,26 @@ import de.fherfurt.faculty.data.classes.enums.ModuleType;
 import javax.persistence.*;
 import java.util.*;
 
-import java.io.*;
-
 
 
 @Entity
 @Table(name = "module")
-public class Module {
+public class Module implements Comparable<Module>{
 
+    @Override
+    public int compareTo(Module arg0) {
+
+        int returnVal;
+
+        if (this.id < arg0.getId()){
+            returnVal = -1;
+        } else if (this.id > arg0.getId()){
+            returnVal = 1;
+        } else
+            returnVal = 0;
+
+        return returnVal;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -55,7 +67,8 @@ public class Module {
                   String professorNames,
                   ModuleType typeOfModule,
                   String urlDescriptionDocument,
-                  ModuleCertificationType typeOfCertification){
+                  ModuleCertificationType typeOfCertification,
+                  List<Course> courses){
 
         this.name = name;
         this.semester = semester;
@@ -63,6 +76,7 @@ public class Module {
         this.typeOfModule = typeOfModule;
         this.urlDescriptionDocument = urlDescriptionDocument;
         this.typeOfCertification = typeOfCertification;
+        this.courses = courses;
 
     };
 

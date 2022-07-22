@@ -92,7 +92,7 @@ public class GenericDao <T>{
     public void deleteAll()
     {
         Query query = getEntityManager().createQuery(
-                "DELETE * FROM " + getEntityClass().getCanonicalName());
+                "DELETE FROM " + getEntityClass().getCanonicalName());
     }
 
     public T findById(final long id )
@@ -104,17 +104,21 @@ public class GenericDao <T>{
     public Collection<T> findAll(){
 
         Query query = getEntityManager().createQuery(
-                "SELECT * FROM " + getEntityClass().getCanonicalName());
+                "FROM " + getEntityClass().getCanonicalName());
         return (Collection<T>) query.getResultList();
 
     }
 
+    public T findOneByFilter(String attributeName, String attributeValue){
+
+        Collection<T> objects = findAllByFilter(attributeName, attributeValue);
+
+        return (T) objects.stream().findFirst().get();
+    }
+
     public Collection<T> findAllByFilter(String attributeName, String attributeValue){
-        String queryString = String.format(
-                "SELECT * FROM %s WHERE %s = %s",
-                getEntityClass().getCanonicalName(),
-                attributeName,
-                attributeValue);
+        String queryString = "FROM " + getEntityClass().getCanonicalName() + " WHERE " + attributeName + " = \'" + attributeValue + "\'";
+        System.out.println(queryString);
 
         Query query = getEntityManager().createQuery(queryString);
         return (Collection<T>) query.getResultList();
@@ -127,28 +131,20 @@ public class GenericDao <T>{
             @Nullable String attribute2Name,
             @Nullable String attribute2Value
     ){
-        String queryString = MessageFormat.format(
-                "SELECT * FROM {0} inner join {0}.{1}",
-                getEntityClass().getCanonicalName(),
-                joinTableName
-        );
+
+        String queryString = "FROM " + getEntityClass().getCanonicalName() + " as x inner join x." + joinTableName + " as y";
+
 
         if (!(attribute1Name == null) && !(attribute1Value == null)) {
-            queryString = MessageFormat.format(
-                    "{0} WHERE {1} = {2}",
-                    queryString,
-                    attribute1Name,
-                    attribute1Value
-            );
+
+            queryString = queryString + " WHERE y." + attribute1Name + " = '" + attribute1Value + "'";
+
         }
 
         if (!(attribute2Name == null) && !(attribute2Value == null)) {
-            queryString = MessageFormat.format(
-                    "{0} AND {1} = {2}",
-                    queryString,
-                    attribute2Name,
-                    attribute2Value
-            );
+
+            queryString = queryString + " AND y." + attribute2Name + " = '" + attribute2Value + "'";
+
         }
 
         Query query = getEntityManager().createQuery(queryString);

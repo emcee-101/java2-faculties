@@ -3,8 +3,10 @@ package de.fherfurt.faculty.data.repository.core;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -12,8 +14,6 @@ import org.junit.jupiter.api.BeforeEach;
 import de.fherfurt.faculty.data.classes.*;
 import de.fherfurt.faculty.data.classes.Module;
 import de.fherfurt.faculty.data.classes.enums.CourseType;
-import de.fherfurt.faculty.data.classes.enums.ModuleCertificationType;
-import de.fherfurt.faculty.data.classes.enums.ModuleType;
 import de.fherfurt.faculty.data.repository.DaoHolder;
 import de.fherfurt.faculty.data.repository.TestData;
 
@@ -21,7 +21,11 @@ import de.fherfurt.faculty.data.repository.TestData;
 public class GenericDAOTest {
 
     TestData testData;
-
+    List<University> savedUniversities;
+    List<Faculty> savedFaculties;
+    List<Course> savedCourses;    
+    List<Module> savedModules;
+    
     @BeforeEach
     void init() {
         DaoHolder.getInstance().getCourseDao().deleteAll();
@@ -30,27 +34,30 @@ public class GenericDAOTest {
         DaoHolder.getInstance().getUniversityDao().deleteAll();
 
         testData = new TestData();
-
+        savedUniversities = new ArrayList<University> (DaoHolder.getInstance().getUniversityDao().create(testData.getUniversities()));
+        savedFaculties = new ArrayList<Faculty> (DaoHolder.getInstance().getFacultyDao().create(testData.getFaculties()));
+        savedCourses = new ArrayList<Course> (DaoHolder.getInstance().getCourseDao().create(testData.getCourses()));
+        savedModules = new ArrayList<Module> (DaoHolder.getInstance().getModuleDao().create(testData.getModules()));
     }
 
     @Test
     void findAllByFilter(){
 
         // GIVEN
+        long IDforTestFaculty = savedFaculties.get(0).getId();
+        Faculty testFaculty = DaoHolder.getInstance().getFacultyDao().findById(IDforTestFaculty);
 
-        DaoHolder.getInstance().getFacultyDao().create(testData.getFaculties());
-        DaoHolder.getInstance().getCourseDao().create(testData.getCourses());
-
-        Course additionalTestCourse1 = new Course("Bogus", 6, true, CourseType.BACHELOR, "Pringles", faculty, modules); 
-        DaoHolder.getInstance().getCourseDao().create(additionalTestCourse1);
+        Course additionalTestCourse1 = new Course("Bogus", 6, -1.0f, CourseType.BACHELOR, "Pringles", testFaculty); 
+        Course savedTestCourse = DaoHolder.getInstance().getCourseDao().create(additionalTestCourse1);
         
         // WHEN
         final Collection<Course> foundCoursesSixSemesters = DaoHolder.getInstance().getCourseDao().findAllByFilter("numberOfSemesters", "6");
         final Collection<Course> foundCoursesFourSemesters = DaoHolder.getInstance().getCourseDao().findAllByFilter("numberOfSemesters", "4");
+        final Collection<Course> foundCoursesNamedBogus = DaoHolder.getInstance().getCourseDao().findAllByFilter("name", "Bogus");
 
 
-        List<String> listOfNamesSix = null;
-        List<String> listOfNamesFour = null;
+        List<String> listOfNamesSix = new ArrayList<String>();
+        List<String> listOfNamesFour = new ArrayList<String>();
 
         for (Course course: foundCoursesSixSemesters)
             listOfNamesSix.add(course.getName());
@@ -65,34 +72,56 @@ public class GenericDAOTest {
         List<String> possibleOutcome2 = Arrays.asList(new String[]{"BIW", "Bogus"});
 
         assertTrue((listOfNamesSix == possibleOutcome1) || (listOfNamesSix == possibleOutcome2));
-        assertNull(listOfNamesFour);
+        assertTrue(listOfNamesFour.isEmpty());
+        assertTrue(savedTestCourse.getId() == foundCoursesNamedBogus.stream().findFirst().get().getId());
 
+    }
+
+    @Test
+    void findAllByJoinFilter() {
+
+        // GIVEN
+        University testUni = savedUniversities.get(0);
+        String attribute1 = "name";
+        String attribute1Value = testUni.getName();
+
+        // WHEN
+        Collection<Faculty> foundFaculties = (Collection<Faculty>) DaoHolder.getInstance().getFacultyDao().findAllByJoinFilter(
+                "university",
+                attribute1,
+                attribute1Value,
+                null,
+                null
+        );
+
+
+
+        // THEN
+        assertIterableEquals(foundFaculties, savedFaculties);
     }
 
     @Test
     void findAll(){
 
-        // GIVEN
-        final Collection<Course> allCourses = DaoHolder.getInstance().getCourseDao().create(testData.getCourses());
-
         // WHEN
-        final Collection<Course> foundCourses = DaoHolder.getInstance().getCourseDao().findAll();
+        List<Module> foundModules = new ArrayList<Module>(DaoHolder.getInstance().getModuleDao().findAll());
+        Collections.sort(foundModules);
+        Collections.sort(savedModules);
+
 
         // THEN
-        assertSame(allCourses, foundCourses);
+        assertTrue(savedModules.equals(foundModules));
     }
 
     @Test
     void deleteAll(){
-        // GIVEN
-        DaoHolder.getInstance().getCourseDao().create(testData.getCourses());
 
         // WHEN
         DaoHolder.getInstance().getCourseDao().deleteAll();
         final Collection<Course> foundCourses = DaoHolder.getInstance().getCourseDao().findAll();
 
         // THEN
-        assertNull(foundCourses);
+        assertTrue(foundCourses.isEmpty());
 
     }
 

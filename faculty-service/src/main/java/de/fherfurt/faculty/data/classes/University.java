@@ -36,10 +36,9 @@ public class University {
     }
 
 
-    public University(String name, String presidentName, List<Faculty> faculties){
+    public University(String name, String presidentName){
         this.name = name;
         this.presidentName=presidentName;
-        this.faculties=faculties;
     }
 
     public String getPresidentName() {

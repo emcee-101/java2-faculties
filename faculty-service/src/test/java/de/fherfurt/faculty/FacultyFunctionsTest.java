@@ -8,9 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import de.fherfurt.faculty.data.classes.*;
 import de.fherfurt.faculty.data.classes.Module;
@@ -18,6 +16,10 @@ import de.fherfurt.faculty.data.classes.Module;
 class FacultyFunctionsTest {
 
     TestData testData;
+    List<University> savedUniversities;
+    List<Faculty> savedFaculties;
+    List<Course> savedCourses;
+    List<Module> savedModules;
 
     @BeforeEach
     void init() {
@@ -27,10 +29,10 @@ class FacultyFunctionsTest {
         DaoHolder.getInstance().getUniversityDao().deleteAll();
 
         testData = new TestData();
-        DaoHolder.getInstance().getCourseDao().create(testData.getCourses());
-        DaoHolder.getInstance().getFacultyDao().create(testData.getFaculties());
-        DaoHolder.getInstance().getModuleDao().create(testData.getModules());
-        DaoHolder.getInstance().getUniversityDao().create(testData.getUniversities());
+        savedUniversities = new ArrayList<University>(DaoHolder.getInstance().getUniversityDao().create(testData.getUniversities()));
+        savedFaculties = new ArrayList<Faculty> (DaoHolder.getInstance().getFacultyDao().create(testData.getFaculties()));
+        savedCourses = new ArrayList<Course> (DaoHolder.getInstance().getCourseDao().create(testData.getCourses()));
+        savedModules = new ArrayList<Module> (DaoHolder.getInstance().getModuleDao().create(testData.getModules()));
     }
 
 
@@ -40,15 +42,11 @@ class FacultyFunctionsTest {
         // GIVEN
         String newProfessorName = "Schorcht";
 
-        Collection<Module> modules =  DaoHolder.getInstance()
-                                               .getModuleDao()
-                                               .findAllByFilter("name", "java1");
-        Module module = modules.stream()
-                               .findFirst()
-                               .get();
+        Module testModule = savedModules.get(0);
 
-        long idOfModule = module.getId();
-        List<String> oldNameList = module.getProfessorNamesAsList();
+        long idOfModule = testModule.getId();
+        LinkedList<String> oldNameList = new LinkedList<String>(testModule.getProfessorNamesAsList());
+        assertIterableEquals(new ArrayList<String>(oldNameList), new ArrayList<String>(DaoHolder.getInstance().getModuleDao().findById(idOfModule).getProfessorNamesAsList()));
         
         // WHEN
         ModuleFunctions.addProfessorToModule(newProfessorName, idOfModule);
@@ -59,8 +57,8 @@ class FacultyFunctionsTest {
                                          .findById(idOfModule);
 
         oldNameList.add(newProfessorName);
-    
-        assertTrue(oldNameList == updatedModule.getProfessorNamesAsList());
+
+        assertIterableEquals(new ArrayList<String>(oldNameList), updatedModule.getProfessorNamesAsList());
 
     }
 
@@ -75,66 +73,38 @@ class FacultyFunctionsTest {
         Module module = modules.stream().findFirst().get();
 
         long idOfModule = module.getId();
-        List<String> oldNameList = module.getProfessorNamesAsList();
+        LinkedList<String> oldNameList = new LinkedList<String>(module.getProfessorNamesAsList());
 
         // WHEN
         ModuleFunctions.removeProfessorFromModule(professorNameToDelete, idOfModule);
 
-        // THEN
         Module updatedModule =  DaoHolder.getInstance().getModuleDao().findById(idOfModule);
 
         oldNameList.remove(professorNameToDelete);
+        Collections.sort(oldNameList);
 
-        assertFalse(oldNameList == updatedModule.getProfessorNamesAsList());
+        LinkedList<String> updatedList = new LinkedList<String>(updatedModule.getProfessorNamesAsList());
+        Collections.sort(updatedList);
+
+        // THEN
+
+        assertIterableEquals(oldNameList, updatedModule.getProfessorNamesAsList());
     }
 
 
     @Test
     void outputDeanByFaculty() {
         // GIVEN
-        String facultyToGetDekanFrom1 = testData.getFaculties().get(0).getName();
-        String facultyToGetDekanFrom2 = "Gartenbau";
+        Faculty facultyData = savedFaculties.get(0);
+        String givenDeanName = facultyData.getDeanName();
+        long givenFacultyId = facultyData.getId();
 
         // WHEN
-        String resultTest1 = facultyProduction.outputDeanByFaculty(facultyToGetDekanFrom1);
-        String resultTest2 = facultyProduction.outputDeanByFaculty(facultyToGetDekanFrom2);
+        String testResult1 = FacultyFunctions.outputDeanByFaculty(givenFacultyId);
 
         // THEN
-        assertSame(resultTest1, testData.getFaculties().get(0).getDeanName());
-        assertSame(resultTest2, "Faculty not found");
+        assertSame(testResult1, givenDeanName);
     }
-
-    @Test
-    void filterModulesBySemesterAndCourse() {
-        // given
-        String testModuleName = testData.getModules().get(0).getName();
-        int testModuleSemester = testData.getModules().get(0).getSemester();
-        String testCourseName = testData.getModules().get(0).getCourseName();
-        // when
-        List<String> testOutput = facultyProduction.filterModulesBySemesterAndCourse(testCourseName, testModuleSemester);
-        List<String> testOutput2 = facultyProduction.filterModulesBySemesterAndCourse(testCourseName, testModuleSemester + 1);
-        List<String> testOutput3 = facultyProduction.filterModulesBySemesterAndCourse(testCourseName + "test", testModuleSemester);
-        // then
-        assertTrue(testOutput.contains(testModuleName));
-        assertFalse(testOutput2.contains(testModuleName));
-        assertFalse(testOutput3.contains(testModuleName));
-
-
-    }
-
-    @Test
-    void filterModulesByCourse() {
-        // given
-        String testModuleName = testData.getModules().get(0).getName();
-        String testCourseName = testData.getModules().get(0).getCourseName();
-        // when
-        List<String> testOutput = facultyProduction.filterModulesByCourse(testCourseName);
-        List<String> testOutput2 = facultyProduction.filterModulesByCourse(testCourseName + "test");
-        // then
-        assertTrue(testOutput.contains(testModuleName));
-        assertFalse(testOutput2.contains(testModuleName));
-    }
-
 
     @Test
     void updateDescriptionDocument() {

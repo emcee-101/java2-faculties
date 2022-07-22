@@ -20,10 +20,10 @@ public class Faculty {
         return id;
     }
 
-    public Faculty(String deanName, String name, List<Course> courses) {
+    public Faculty(String deanName, String name, University university) {
         this.name = name;
         this.deanName = deanName;
-        this.courses=courses;
+        this.university=university;
     }
 
     private String deanName;
