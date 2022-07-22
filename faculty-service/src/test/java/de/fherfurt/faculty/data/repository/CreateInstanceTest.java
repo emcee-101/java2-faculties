@@ -11,7 +11,7 @@ public class CreateInstanceTest {
     @org.junit.jupiter.api.Test
     void createInstance(){
 
-        //GIVEN
+        // GIVEN
         TestData test = new TestData();
 
         List<Course> courseList = test.getCourses();
