@@ -73,17 +73,22 @@ class FacultyFunctionsTest {
         Module module = modules.stream().findFirst().get();
 
         long idOfModule = module.getId();
-        LinkedList<String> oldNameList = new LinkedList<>(module.getProfessorNamesAsList());
+        LinkedList<String> oldNameList = new LinkedList<String>(module.getProfessorNamesAsList());
 
         // WHEN
         ModuleFunctions.removeProfessorFromModule(professorNameToDelete, idOfModule);
 
-        // THEN
         Module updatedModule =  DaoHolder.getInstance().getModuleDao().findById(idOfModule);
 
         oldNameList.remove(professorNameToDelete);
+        Collections.sort(oldNameList);
 
-        assertFalse(oldNameList == updatedModule.getProfessorNamesAsList());
+        LinkedList<String> updatedList = new LinkedList<String>(updatedModule.getProfessorNamesAsList());
+        Collections.sort(updatedList);
+
+        // THEN
+
+        assertIterableEquals(oldNameList, updatedModule.getProfessorNamesAsList());
     }
 
 
