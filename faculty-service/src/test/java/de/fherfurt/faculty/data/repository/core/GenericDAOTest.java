@@ -56,8 +56,8 @@ public class GenericDAOTest {
         final Collection<Course> foundCoursesNamedBogus = DaoHolder.getInstance().getCourseDao().findAllByFilter("name", "Bogus");
 
 
-        List<String> listOfNamesSix = Collections.<String>emptyList();
-        List<String> listOfNamesFour = Collections.<String>emptyList();
+        List<String> listOfNamesSix = new ArrayList<String>();
+        List<String> listOfNamesFour = new ArrayList<String>();
 
         for (Course course: foundCoursesSixSemesters)
             listOfNamesSix.add(course.getName());
@@ -75,6 +75,29 @@ public class GenericDAOTest {
         assertTrue(listOfNamesFour.isEmpty());
         assertTrue(savedTestCourse.getId() == foundCoursesNamedBogus.stream().findFirst().get().getId());
 
+    }
+
+    @Test
+    void findAllByJoinFilter() {
+
+        // GIVEN
+        University testUni = savedUniversities.get(0);
+        String attribute1 = "name";
+        String attribute1Value = testUni.getName();
+
+        // WHEN
+        Collection<Faculty> foundFaculties = (Collection<Faculty>) DaoHolder.getInstance().getFacultyDao().findAllByJoinFilter(
+                "university",
+                attribute1,
+                attribute1Value,
+                null,
+                null
+        );
+
+
+
+        // THEN
+        assertIterableEquals(foundFaculties, savedFaculties);
     }
 
     @Test

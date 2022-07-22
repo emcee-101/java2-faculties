@@ -126,28 +126,20 @@ public class GenericDao <T>{
             @Nullable String attribute2Name,
             @Nullable String attribute2Value
     ){
-        String queryString = MessageFormat.format(
-                "FROM {0} inner join {0}.{1}",
-                getEntityClass().getCanonicalName(),
-                joinTableName
-        );
+
+        String queryString = "FROM " + getEntityClass().getCanonicalName() + " as x inner join x." + joinTableName + " as y";
+
 
         if (!(attribute1Name == null) && !(attribute1Value == null)) {
-            queryString = MessageFormat.format(
-                    "{0} WHERE {1} = \'{2}\'",
-                    queryString,
-                    attribute1Name,
-                    attribute1Value
-            );
+
+            queryString = queryString + " WHERE y." + attribute1Name + " = '" + attribute1Value + "'";
+
         }
 
         if (!(attribute2Name == null) && !(attribute2Value == null)) {
-            queryString = MessageFormat.format(
-                    "{0} AND {1} = \'{2}\'",
-                    queryString,
-                    attribute2Name,
-                    attribute2Value
-            );
+
+            queryString = queryString + " AND y." + attribute2Name + " = '" + attribute2Value + "'";
+
         }
 
         Query query = getEntityManager().createQuery(queryString);
