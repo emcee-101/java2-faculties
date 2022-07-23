@@ -47,6 +47,8 @@ public class GenericDAOTest {
         long IDforTestFaculty = savedFaculties.get(0).getId();
         Faculty testFaculty = DaoHolder.getInstance().getFacultyDao().findById(IDforTestFaculty);
 
+        System.out.println(testFaculty.getName());
+
         Course additionalTestCourse1 = new Course("Bogus", 6, -1.0f, CourseType.BACHELOR, "Pringles", testFaculty); 
         Course savedTestCourse = DaoHolder.getInstance().getCourseDao().create(additionalTestCourse1);
         
@@ -71,7 +73,7 @@ public class GenericDAOTest {
         List<String> possibleOutcome1 = Arrays.asList(new String[]{"Bogus", "BIW"}); 
         List<String> possibleOutcome2 = Arrays.asList(new String[]{"BIW", "Bogus"});
 
-        assertTrue((listOfNamesSix == possibleOutcome1) || (listOfNamesSix == possibleOutcome2));
+        assertTrue((listOfNamesSix.equals(possibleOutcome1)) || (listOfNamesSix.equals(possibleOutcome2)));
         assertTrue(listOfNamesFour.isEmpty());
         assertTrue(savedTestCourse.getId() == foundCoursesNamedBogus.stream().findFirst().get().getId());
 
