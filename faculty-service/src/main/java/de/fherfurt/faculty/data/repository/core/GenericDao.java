@@ -91,8 +91,15 @@ public class GenericDao <T>{
 
     public void deleteAll()
     {
+        getEntityManager().getTransaction().begin();
+
         Query query = getEntityManager().createQuery(
                 "DELETE FROM " + getEntityClass().getCanonicalName());
+        
+        query.executeUpdate();
+
+        getEntityManager().getTransaction().commit();
+
     }
 
     public T findById(final long id )
