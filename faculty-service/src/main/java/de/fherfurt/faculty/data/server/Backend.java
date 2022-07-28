@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import java.net.URI;
 import org.slf4j.Logger;
 
+
+
 public class Backend {
 
     public static final String Base_URL = "http://localhost:10000/";
@@ -16,7 +18,7 @@ public class Backend {
 
         // Register REST Endpoint Classes
             // CHANGE MODULE.CLASS later - its supposed to be a Resource-Class!!
-        final ResourceConfig config = new ResourceConfig(Module.class);
+        final ResourceConfig config = new ResourceConfig(REST_configuration.class);
 
         // Start Jetty Server
         final Server server = JettyHttpContainerFactory.createServer(URI.create(Base_URL), config);
