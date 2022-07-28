@@ -18,7 +18,7 @@ public class Backend {
 
         // Register REST Endpoint Classes
             // CHANGE MODULE.CLASS later - its supposed to be a Resource-Class!!
-        final ResourceConfig config = new ResourceConfig(helloWorldResource.class);
+        final ResourceConfig config = new ResourceConfig(REST_configuration.class);
 
         // Start Jetty Server
         final Server server = JettyHttpContainerFactory.createServer(URI.create(Base_URL), config);

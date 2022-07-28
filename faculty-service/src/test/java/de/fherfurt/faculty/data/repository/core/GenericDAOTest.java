@@ -105,14 +105,24 @@ public class GenericDAOTest {
     @Test
     void findAll(){
 
+        // GIVEN
+        List<Module>        givenModules        = savedModules;
+        List<Course>        givenCourses        = savedCourses;
+        List<Faculty>       givenFaculties      = savedFaculties;
+        List<University>    givenUniversities   = savedUniversities;
+
         // WHEN
-        List<Module> foundModules = new ArrayList<Module>(DaoHolder.getInstance().getModuleDao().findAll());
-        Collections.sort(foundModules);
-        Collections.sort(savedModules);
+        List<Module>        foundModules        = new ArrayList<Module>(DaoHolder.getInstance().getModuleDao().findAll());
+        List<Course>        foundCourses        = new ArrayList<Course>(DaoHolder.getInstance().getCourseDao().findAll());
+        List<Faculty>       foundFaculties      = new ArrayList<Faculty>(DaoHolder.getInstance().getFacultyDao().findAll());
+        List<University>    foundUniversities   = new ArrayList<University>(DaoHolder.getInstance().getUniversityDao().findAll());
 
 
         // THEN
-        assertTrue(savedModules.equals(foundModules));
+        assertArrayEquals(givenModules.toArray(), foundModules.toArray());
+        assertArrayEquals(givenCourses.toArray(), foundCourses.toArray());
+        assertArrayEquals(givenFaculties.toArray(), foundFaculties.toArray());
+        assertArrayEquals(givenUniversities.toArray(), foundUniversities.toArray());
     }
 
     @Test
@@ -121,11 +131,13 @@ public class GenericDAOTest {
         // WHEN
         DaoHolder.getInstance().getCourseDao().deleteAll();
         final Collection<Course> foundCourses = DaoHolder.getInstance().getCourseDao().findAll();
+        //final Collection<Module> foundModule = DaoHolder.getInstance().getModuleDao().findAll();
 
         // THEN
         assertTrue(foundCourses.isEmpty());
+        //assertTrue(foundModule.isEmpty());
+
 
     }
-
-
 }
+
