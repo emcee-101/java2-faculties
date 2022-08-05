@@ -61,21 +61,23 @@ public class GenericDao <T>{
 
     }
 
-    public void delete( long id){
+    public T delete( long id){
 
         T entity = this.findById(id);
-        this.delete(entity);
+        return this.delete(entity);
     }
 
-    public void delete( T entity) {
+    public T delete( T entity) {
 
         getEntityManager().getTransaction().begin();
         getEntityManager().remove(entity);
         getEntityManager().getTransaction().commit();
 
+        return entity;
+
     }
 
-    public void delete( List<T> entries){
+    public List<T> delete( List<T> entries){
 
         getEntityManager().getTransaction().begin();
 
@@ -86,6 +88,8 @@ public class GenericDao <T>{
         }
 
         getEntityManager().getTransaction().commit();
+
+        return entries;
 
     }
 

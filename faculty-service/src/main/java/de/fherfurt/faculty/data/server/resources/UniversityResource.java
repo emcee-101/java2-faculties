@@ -7,8 +7,6 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 public class UniversityResource {
@@ -16,8 +14,6 @@ public class UniversityResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<University> getAllUniversities(){
-
-        TestData newTestData = new TestData();
 
         List<University> universities = (List<University>) DaoHolder.getInstance().getUniversityDao().findAll();
 
@@ -31,8 +27,6 @@ public class UniversityResource {
     @Path("/findById/{universityId:\\d+}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUniversitiesByID( @PathParam("universityId") long  universityId){
-
-        TestData newTestData = new TestData();
 
         University university = DaoHolder.getInstance().getUniversityDao().findById(universityId);
 
@@ -61,8 +55,6 @@ public class UniversityResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateUniversity( University uni){
 
-        TestData newTestData = new TestData();
-
         University savedUni = DaoHolder.getInstance().getUniversityDao().update(uni);
 
         if( savedUni != null )
@@ -71,4 +63,16 @@ public class UniversityResource {
             return Response.status( Response.Status.INTERNAL_SERVER_ERROR ).build();
     }
 
+    @DELETE
+    @Path("/deleteById/{universityId:\\d+}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteUniversityById( @PathParam("universityId") long universityId) {
+
+        University deletedUniversity = DaoHolder.getInstance().getUniversityDao().delete(universityId);
+
+        if (deletedUniversity != null)
+            return Response.ok(deletedUniversity).build();
+        else return Response.status(Response.Status.NOT_FOUND).build();
+
+    }
 }

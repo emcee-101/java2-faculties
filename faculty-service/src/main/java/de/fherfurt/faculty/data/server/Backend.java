@@ -1,5 +1,6 @@
 package de.fherfurt.faculty.data.server;
 
+import de.fherfurt.faculty.data.server.resources.TestData;
 import org.eclipse.jetty.server.Server;
 import org.glassfish.jersey.jetty.JettyHttpContainerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -8,11 +9,17 @@ import org.slf4j.LoggerFactory;
 import java.net.URI;
 import org.slf4j.Logger;
 
+import static de.fherfurt.faculty.data.server.resources.TestData.getTestData;
 
 
 public class Backend {
 
     public static final String Base_URL = "http://localhost:10000/";
+
+    public static void testData(){
+        TestData test = getTestData();
+    }
+
 
     public static Server startServer() {
 

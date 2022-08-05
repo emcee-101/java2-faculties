@@ -50,16 +50,17 @@ public class ModuleFunctions {
      * @param moduleId id of the module in which the urlDescriptionDocument is to be updated
      *
      */
-    public static void updateDescriptionDocument(String urlDescriptionDocument, long moduleId){
+    public static Module updateDescriptionDocument(String urlDescriptionDocument, long moduleId){
         Module module = DaoHolder.getInstance().getModuleDao().findById(moduleId);
 
         if(!module.getUrlDescriptionDocument().equals(urlDescriptionDocument)) {
             module.setUrlDescriptionDocument(urlDescriptionDocument);
 
-            DaoHolder.getInstance().getModuleDao().update(module);
+            return DaoHolder.getInstance().getModuleDao().update(module);
         }
         else{
             System.out.println("Error: Description document could not be updated!");
+            return null;
         }
     }
 
