@@ -16,8 +16,8 @@ public class Backend {
 
     public static final String Base_URL = "http://localhost:10000/";
 
-    public static void testData(){
-        TestData test = getTestData();
+    public static TestData testData(){
+        return getTestData();
     }
 
 
@@ -35,6 +35,7 @@ public class Backend {
 
     public static void main(String[] args){
         Logger LOG = LoggerFactory.getLogger( Backend.class );
+        testData();
 
         try {
             final Server server = startServer();

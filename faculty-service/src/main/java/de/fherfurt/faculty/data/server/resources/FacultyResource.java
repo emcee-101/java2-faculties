@@ -85,9 +85,9 @@ public class FacultyResource {
     }
 
     @GET
-    @Path("/outputDeanByFaculty/{facultyId:\\d+}")
+    @Path("/output-dean-by-faculty/{faculty-id:\\d+}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Faculty> outputDeanByFaculty(@PathParam( "facultyId" ) long facultyId) {
+    public List<Faculty> outputDeanByFaculty(@PathParam( "faculty-id" ) long facultyId) {
 
 
         List<Faculty> foundDeans = outputDeanByFaculty(facultyId);
