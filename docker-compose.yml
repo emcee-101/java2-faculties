@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  backend:
+    build: faculty-service
+    ports:
+      - 10000:10000
+    networks:
+      - public
+      - private
+networks:
+  public:
+  private:
+
