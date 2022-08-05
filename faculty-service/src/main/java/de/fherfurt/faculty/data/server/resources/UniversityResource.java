@@ -24,9 +24,9 @@ public class UniversityResource {
     }
 
     @GET
-    @Path("/findById/{universityId:\\d+}")
+    @Path("/find-by-id/{university-id:\\d+}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getUniversitiesByID( @PathParam("universityId") long  universityId){
+    public Response getUniversitiesByID( @PathParam("university-id") long  universityId){
 
         University university = DaoHolder.getInstance().getUniversityDao().findById(universityId);
 
@@ -64,9 +64,9 @@ public class UniversityResource {
     }
 
     @DELETE
-    @Path("/deleteById/{universityId:\\d+}")
+    @Path("/delete-by-id/{university-id:\\d+}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteUniversityById( @PathParam("universityId") long universityId) {
+    public Response deleteUniversityById( @PathParam("university-id") long universityId) {
 
         University deletedUniversity = DaoHolder.getInstance().getUniversityDao().delete(universityId);
 

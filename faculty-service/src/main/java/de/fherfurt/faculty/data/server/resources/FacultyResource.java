@@ -27,9 +27,9 @@ public class FacultyResource {
     }
 
     @GET
-    @Path("/findById/{facultyId:\\d+}")
+    @Path("/find-by-id/{faculty-id:\\d+}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getFacultiesByID(@PathParam("facultyId") long facultyId) {
+    public Response getFacultiesByID(@PathParam("faculty-id") long facultyId) {
 
         Faculty faculty = DaoHolder.getInstance().getFacultyDao().findById(facultyId);
 
@@ -55,9 +55,9 @@ public class FacultyResource {
     }
 
     @DELETE
-    @Path("/deleteById/{facultyId:\\d+}")
+    @Path("/delete-by-id/{faculty-id:\\d+}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteFacultyById(@PathParam("facultyId") long facultyId){
+    public Response deleteFacultyById(@PathParam("faculty-id") long facultyId){
 
         TestData newTestData = new TestData();
 

@@ -27,9 +27,9 @@ public class ModuleResource {
     }
 
     @GET
-    @Path("/findById/{moduleId:\\d+}")
+    @Path("/find-by-id/{module-id:\\d+}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getModulesByID( @PathParam("moduleId") long moduleId){
+    public Response getModulesByID( @PathParam("module-id") long moduleId){
 
         Module module = DaoHolder.getInstance().getModuleDao().findById(moduleId);
 
@@ -54,9 +54,9 @@ public class ModuleResource {
     }
 
     @DELETE
-    @Path("/deleteById/{moduleId:\\d+}")
+    @Path("/delete-by-id/{module-id:\\d+}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteModuleById( @PathParam("moduleId") long moduleId){
+    public Response deleteModuleById( @PathParam("module-id") long moduleId){
 
         TestData newTestData = new TestData();
 
@@ -86,9 +86,9 @@ public class ModuleResource {
     //filterModulesBySemesterAndCourse
 
     @GET
-    @Path("/filterModulesBySemesterAndCourse/{courseID}/{semesterNumber}")
+    @Path("/filter-modules-by-semester-and-course/{course-id}/{semester-number}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Module> filterModulesBySemesterAndCourse(@PathParam( "courseID" ) String courseID, @PathParam("semesterNumber") int semesterNumber){
+    public List<Module> filterModulesBySemesterAndCourse(@PathParam( "course-id" ) String courseID, @PathParam("semester-number") int semesterNumber){
 
         List<Module> foundModules = filterModulesBySemesterAndCourse(courseID, semesterNumber);
 
