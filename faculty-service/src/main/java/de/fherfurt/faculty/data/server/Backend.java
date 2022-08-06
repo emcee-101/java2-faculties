@@ -22,7 +22,9 @@ public class Backend {
      */
     public static void main(String[] args){
         Logger LOG = LoggerFactory.getLogger( Backend.class );
-        testData();
+
+        // CREATE TEST DATA
+        if(useTestData) testData();
 
         try {
             final Server server = startServer();
