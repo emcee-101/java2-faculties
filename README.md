@@ -7,8 +7,9 @@ Hello and welcome to our documentation of the service Faculty. This service supp
 
 Since this Project uses Docker the Installation process is uncomplicated. 
 
-1. Go to the root folder of our project with a Shell (like Powershell, Bash, etc.) of your choice.
-2. Run the command `docker compose up`
+1. Make sure you have Docker installed and install it if you don't.
+2. Go to the root folder of our project with a Shell (like Powershell, Bash, etc.) of your choice.
+3. Run the command `docker compose up`
 
 That is it! The Service should be running after the initial building process.
 
