@@ -1,6 +1,5 @@
 package de.fherfurt.faculty.data.server.resources;
 
-
 import de.fherfurt.faculty.data.classes.Course;
 import de.fherfurt.faculty.data.classes.Faculty;
 import de.fherfurt.faculty.data.classes.Module;
@@ -15,7 +14,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TestData {
-
     private final List<University> universities = new ArrayList<University>(Arrays.asList(
             new University(
                     "FH-Erfurt",
@@ -26,7 +24,6 @@ public class TestData {
                     "uni president"
             )
     ));
-
 
     private final List<Faculty> faculties = new ArrayList<Faculty>(Arrays.asList(
             new Faculty(
@@ -46,7 +43,6 @@ public class TestData {
             )
     ));
 
-
     private final List<Course> courses = new ArrayList<Course>(Arrays.asList(
             new Course(
                     "BIW",
@@ -65,7 +61,6 @@ public class TestData {
                     faculties.get(1)
             )
     ));
-
 
     private final List<Module> modules = new ArrayList<Module>(Arrays.asList(
             new Module(
@@ -87,11 +82,34 @@ public class TestData {
             )
     ));
 
-
     private List<University> savedUniversities;
     private List<Faculty> savedFaculties;
     private List<Course> savedCourses;
     private List<Module> savedModules;
+
+    /**
+     * Class Constructor
+     */
+    public TestData(){
+        DaoHolder.getInstance().getCourseDao().deleteAll();
+        DaoHolder.getInstance().getFacultyDao().deleteAll();
+        DaoHolder.getInstance().getModuleDao().deleteAll();
+        DaoHolder.getInstance().getUniversityDao().deleteAll();
+
+        savedUniversities = new ArrayList<University> (DaoHolder.getInstance().getUniversityDao().create(universities));
+        savedFaculties = new ArrayList<Faculty> (DaoHolder.getInstance().getFacultyDao().create(faculties));
+        savedCourses = new ArrayList<Course> (DaoHolder.getInstance().getCourseDao().create(courses));
+        savedModules = new ArrayList<Module> (DaoHolder.getInstance().getModuleDao().create(modules));
+    }
+
+    /**
+     * Creates a new instance of TestData
+     *
+     * @return  New instance of TestData
+     */
+    public static TestData getTestData(){
+        return new TestData();
+    }
 
     public List<Course> getCourses() {
         return savedCourses;
@@ -108,24 +126,4 @@ public class TestData {
     public List<University> getUniversities() {
         return savedUniversities;
     }
-
-
-
-    public static TestData getTestData(){
-        return new TestData();
-    }
-
-
-    public TestData(){
-        DaoHolder.getInstance().getCourseDao().deleteAll();
-        DaoHolder.getInstance().getFacultyDao().deleteAll();
-        DaoHolder.getInstance().getModuleDao().deleteAll();
-        DaoHolder.getInstance().getUniversityDao().deleteAll();
-
-        savedUniversities = new ArrayList<University> (DaoHolder.getInstance().getUniversityDao().create(universities));
-        savedFaculties = new ArrayList<Faculty> (DaoHolder.getInstance().getFacultyDao().create(faculties));
-        savedCourses = new ArrayList<Course> (DaoHolder.getInstance().getCourseDao().create(courses));
-        savedModules = new ArrayList<Module> (DaoHolder.getInstance().getModuleDao().create(modules));
-    }
-
 }

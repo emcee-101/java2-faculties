@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +18,6 @@ import de.fherfurt.faculty.data.repository.TestData;
 
 
 public class GenericDAOTest {
-
     TestData testData;
     List<University> savedUniversities;
     List<Faculty> savedFaculties;
@@ -42,7 +40,6 @@ public class GenericDAOTest {
 
     @Test
     void findAllByFilter(){
-
         // GIVEN
         long IDforTestFaculty = savedFaculties.get(0).getId();
         Faculty testFaculty = DaoHolder.getInstance().getFacultyDao().findById(IDforTestFaculty);
@@ -57,14 +54,12 @@ public class GenericDAOTest {
         final Collection<Course> foundCoursesFourSemesters = DaoHolder.getInstance().getCourseDao().findAllByFilter("numberOfSemesters", "4");
         final Collection<Course> foundCoursesNamedBogus = DaoHolder.getInstance().getCourseDao().findAllByFilter("name", "Bogus");
 
-
         List<String> listOfNamesSix = new ArrayList<String>();
         List<String> listOfNamesFour = new ArrayList<String>();
 
         for (Course course: foundCoursesSixSemesters)
             listOfNamesSix.add(course.getName());
 
-        
         for (Course course: foundCoursesFourSemesters)
             listOfNamesFour.add(course.getName());
 
@@ -76,12 +71,10 @@ public class GenericDAOTest {
         assertTrue((listOfNamesSix.equals(possibleOutcome1)) || (listOfNamesSix.equals(possibleOutcome2)));
         assertTrue(listOfNamesFour.isEmpty());
         assertTrue(savedTestCourse.getId() == foundCoursesNamedBogus.stream().findFirst().get().getId());
-
     }
 
     @Test
     void findAllByJoinFilter() {
-
         // GIVEN
         University testUni = savedUniversities.get(0);
         String attribute1Name = "name";
@@ -116,7 +109,6 @@ public class GenericDAOTest {
 
     @Test
     void findAll(){
-
         // GIVEN
         List<Module>        givenModules        = savedModules;
         List<Course>        givenCourses        = savedCourses;
@@ -129,7 +121,6 @@ public class GenericDAOTest {
         List<Faculty>       foundFaculties      = new ArrayList<Faculty>(DaoHolder.getInstance().getFacultyDao().findAll());
         List<University>    foundUniversities   = new ArrayList<University>(DaoHolder.getInstance().getUniversityDao().findAll());
 
-
         // THEN
         assertArrayEquals(givenModules.toArray(), foundModules.toArray());
         assertArrayEquals(givenCourses.toArray(), foundCourses.toArray());
@@ -139,7 +130,6 @@ public class GenericDAOTest {
 
     @Test
     void deleteAll(){
-
         // WHEN
         DaoHolder.getInstance().getCourseDao().deleteAll();
         final Collection<Course> foundCourses = DaoHolder.getInstance().getCourseDao().findAll();
@@ -148,8 +138,6 @@ public class GenericDAOTest {
         // THEN
         assertTrue(foundCourses.isEmpty());
         //assertTrue(foundModule.isEmpty());
-
-
     }
 }
 

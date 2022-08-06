@@ -5,7 +5,9 @@ import de.fherfurt.faculty.data.classes.enums.CourseType;
 import javax.persistence.*;
 import java.util.List;
 
-
+/**
+ * Entity-Class for Course
+ */
 @Entity
 @Table(name = "course")
 public class Course {
@@ -14,17 +16,10 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    public Course() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
+    private String name;
     private int numberOfSemesters;
     private float numerusClausus;
     private CourseType typeOfCourse;
-
     private String directorName;
 
     @ManyToMany
@@ -33,18 +28,14 @@ public class Course {
     @ManyToOne
     private Faculty faculty;
 
-    private String name;
+    /**
+     * Class Constructor
+     */
+    public Course() {}
 
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-
-
+    /**
+     * Class Constructor to generate Course with Values
+     */
     public Course(String name,
                   int numberOfSemesters,
                   float numerusClausus,
@@ -52,12 +43,23 @@ public class Course {
                   String directorName,
                   Faculty faculty) {
         this.name = name;
-
         this.numberOfSemesters = numberOfSemesters;
         this.numerusClausus = numerusClausus;
         this.typeOfCourse = typeOfCourse;
         this.directorName = directorName;
         this.faculty = faculty;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getNumberOfSemesters() {

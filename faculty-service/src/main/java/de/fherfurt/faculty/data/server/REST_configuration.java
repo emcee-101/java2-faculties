@@ -1,6 +1,5 @@
 package de.fherfurt.faculty.data.server;
 
-import de.fherfurt.faculty.data.classes.University;
 import de.fherfurt.faculty.data.server.resources.CourseResource;
 import de.fherfurt.faculty.data.server.resources.FacultyResource;
 import de.fherfurt.faculty.data.server.resources.ModuleResource;
@@ -9,7 +8,6 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
 
 @Path("/api/v1")
 public class REST_configuration {
