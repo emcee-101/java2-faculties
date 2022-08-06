@@ -1,12 +1,17 @@
 package de.fherfurt.faculty.data.repository.core;
 
 import com.sun.istack.Nullable;
+import de.fherfurt.faculty.data.classes.Module;
+import de.fherfurt.faculty.data.classes.University;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 public class GenericDao <T>{
 
@@ -159,7 +164,12 @@ public class GenericDao <T>{
         }
 
         Query query = getEntityManager().createQuery(queryString);
-        return (Collection<T>) query.getResultList();
+        Collection<T> resultTList = new ArrayList<T>();
+        // since the join HQL, the return of query.getResultList is of type List<Object[]>
+        // in Object[] first index is the type T result, in second index is the joined Class type result
+        for (final Object[] result : (List<Object[]>) query.getResultList()) {
+            resultTList.add((T) result[0]);
+        }
+        return resultTList;
     }
-
 }
