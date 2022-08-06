@@ -9,8 +9,10 @@ import jakarta.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Describes all endpoints of functionalities of course operations the server provides
+ */
 public class CourseResource {
-
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -28,14 +30,12 @@ public class CourseResource {
     @Path("/find-by-id/{course-id:\\d+}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getCourseByID( @PathParam("course-id") long courseId){
-
         TestData newTestData = new TestData();
         Course course = DaoHolder.getInstance().getCourseDao().findById(courseId);
 
         if( course != null )
             return Response.ok( course ).build();
         else return Response.status( Response.Status.NOT_FOUND ).build();
-
     }
 
     @POST
@@ -43,7 +43,6 @@ public class CourseResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createCourse(Course course){
-
         Course savedCourse = DaoHolder.getInstance().getCourseDao().create(course);
 
         if( savedCourse != null )
@@ -56,7 +55,6 @@ public class CourseResource {
     @Path("/delete-by-id/{course-id:\\d+}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteCourseById( @PathParam("course-id") long courseId){
-
         Course Course = DaoHolder.getInstance().getCourseDao().findById(courseId);
 
         if( Course != null ) {
@@ -64,14 +62,12 @@ public class CourseResource {
             return Response.ok().build();
         }
         else return Response.status( Response.Status.NOT_FOUND ).build();
-
     }
 
     @PUT
     @Path("/update/")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateCourse( Course course){
-
         Course updatedCourse = DaoHolder.getInstance().getCourseDao().update(course);
 
         if( updatedCourse != null )
@@ -79,7 +75,4 @@ public class CourseResource {
         else
             return Response.status( Response.Status.INTERNAL_SERVER_ERROR ).build();
     }
-
-
-
 }
