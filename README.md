@@ -53,7 +53,9 @@ It is created as an exam for the module Programming Java 2 of the course applied
 
 ### Further Reading
 
-For Diagrams and more Infos, please visit the WIKI of our Project!
+For Diagrams and more Infos, please read the PDF Document for our Documentation or visit the WIKI of our Project (the latter is more optimized)!
+
+- [PDF](https://git.ai.fh-erfurt.de/java2-team1-faculties/faculties-service/-/blob/main/doc/Dokumentation-1.pdf "PDF Version of Documentation")
 
 - https://git.ai.fh-erfurt.de/java2-team1-faculties/faculties-service/-/wikis/1.-Intro
 - https://git.ai.fh-erfurt.de/java2-team1-faculties/faculties-service/-/wikis/2.-Architecture
