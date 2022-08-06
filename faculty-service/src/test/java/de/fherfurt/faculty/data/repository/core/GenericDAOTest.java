@@ -84,22 +84,34 @@ public class GenericDAOTest {
 
         // GIVEN
         University testUni = savedUniversities.get(0);
-        String attribute1 = "name";
+        String attribute1Name = "name";
         String attribute1Value = testUni.getName();
 
+        String attribute2Name = "presidentName";
+        String attribute2Value = testUni.getPresidentName();
+
         // WHEN
-        Collection<Faculty> foundFaculties = (Collection<Faculty>) DaoHolder.getInstance().getFacultyDao().findAllByJoinFilter(
-                "university",
-                attribute1,
-                attribute1Value,
-                null,
-                null
-        );
+        Collection<Faculty> foundFaculties =
+                (Collection<Faculty>) DaoHolder.getInstance().getFacultyDao().findAllByJoinFilter(
+                    "university",
+                    attribute1Name,
+                    attribute1Value,
+                    null,
+                    null
+                );
 
-
+        Collection<Faculty> foundFaculties2 =
+                (Collection<Faculty>) DaoHolder.getInstance().getFacultyDao().findAllByJoinFilter(
+                        "university",
+                        attribute1Name,
+                        attribute1Value,
+                        attribute2Name,
+                        attribute2Value
+                );
 
         // THEN
         assertIterableEquals(foundFaculties, savedFaculties);
+        assertIterableEquals(foundFaculties2, savedFaculties);
     }
 
     @Test
