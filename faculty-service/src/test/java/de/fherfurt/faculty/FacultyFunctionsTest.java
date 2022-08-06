@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.*;
 
@@ -13,7 +12,6 @@ import de.fherfurt.faculty.data.classes.*;
 import de.fherfurt.faculty.data.classes.Module;
 
 class FacultyFunctionsTest {
-
     TestData testData;
     List<University> savedUniversities;
     List<Faculty> savedFaculties;
@@ -34,10 +32,8 @@ class FacultyFunctionsTest {
         savedModules = new ArrayList<Module> (DaoHolder.getInstance().getModuleDao().create(testData.getModules()));
     }
 
-
     @Test
     void addProfessorToModule() {
-
         // GIVEN
         String newProfessorName = "Schorcht";
 
@@ -58,12 +54,10 @@ class FacultyFunctionsTest {
         oldNameList.add(newProfessorName);
 
         assertIterableEquals(new ArrayList<String>(oldNameList), updatedModule.getProfessorNamesAsList());
-
     }
 
     @Test
     void removeProfessorFromModule() {
-
         // GIVEN
         String professorNameToDelete = "prof1";
 
@@ -89,7 +83,6 @@ class FacultyFunctionsTest {
 
         assertIterableEquals(oldNameList, updatedModule.getProfessorNamesAsList());
     }
-
 
     @Test
     void outputDeanByFaculty() {
@@ -123,6 +116,5 @@ class FacultyFunctionsTest {
 
         assertSame(updatedModule.getUrlDescriptionDocument(), newUrlDescriptionDocument);
         assertNotSame(updatedModule.getUrlDescriptionDocument(), oldDescriptionDocument);
-
     }
 }
