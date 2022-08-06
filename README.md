@@ -2,6 +2,19 @@
 
 Hello and welcome to our documentation of the service Faculty. This service supplies faculty-related data to students and lecturers and functionality to facilitate information finding. For this, we have working (REST) server functionalities that reflect the standard database queries and functions for more specified use-cases.  
 
+
+## Installation
+
+Since this Project uses Docker the Installation process is uncomplicated. 
+
+1. Go to the root folder of our project with a Shell (like Powershell, Bash, etc.) of your choice.
+2. Run the command `docker compose up`
+
+That is it! The Service should be running after the initial building process.
+
+
+## Further Information
+
 The project is developed by 
 
     - Christopher Orth 
@@ -36,6 +49,7 @@ It is created as an exam for the module Programming Java 2 of the course applied
 
     - Jackson for JSON parsing
 
+### Further Reading
 
 For Diagrams and more Infos, please visit the WIKI of our Project!
 
