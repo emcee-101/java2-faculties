@@ -3,8 +3,11 @@ package de.fherfurt.faculty.data.classes;
 import javax.persistence.*;
 import java.util.List;
 
+
 /**
- * Entity-Class for Faculty
+ *This class represents the data of the different modules including their professors and certification types.
+ *The properties are adapted to the special requirements of the class.
+ *This is where the set- and get- functions for each property can be found.
  */
 @Entity
 @Table(name = "faculty")

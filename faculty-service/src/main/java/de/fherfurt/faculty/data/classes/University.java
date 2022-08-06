@@ -3,8 +3,11 @@ package de.fherfurt.faculty.data.classes;
 import javax.persistence.*;
 import java.util.List;
 
+
 /**
- * Entity-Class for University
+ *This class represents the data of the different universities including their faculty and president.
+ *The properties are adapted to the special requirements of the class.
+ *This is where the set- and get- functions for each property can be found.
  */
 @Entity
 @Table(name = "university")

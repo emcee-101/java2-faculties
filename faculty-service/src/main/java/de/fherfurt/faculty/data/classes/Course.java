@@ -5,8 +5,12 @@ import de.fherfurt.faculty.data.classes.enums.CourseType;
 import javax.persistence.*;
 import java.util.List;
 
+
 /**
- * Entity-Class for Course
+ *This class represents the data of the different courses including their modules and directors.
+ *The properties are adapted to the special requirements of the class.
+ *This is where the set- and get- functions for each property can be found.
+ *This class also is expanded by enums, for some properties which need options as values.
  */
 @Entity
 @Table(name = "course")
