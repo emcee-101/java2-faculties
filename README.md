@@ -39,6 +39,6 @@ It is created as an exam for the module Programming Java 2 of the course applied
 
 For Diagrams and more Infos, please visit the WIKI of our Project!
 
-https://git.ai.fh-erfurt.de/java2-team1-faculties/faculties-service/-/wikis/1.-Intro
-https://git.ai.fh-erfurt.de/java2-team1-faculties/faculties-service/-/wikis/2.-Architecture
-https://git.ai.fh-erfurt.de/java2-team1-faculties/faculties-service/-/wikis/3.-Web-Server-REST-Endpoints
+- https://git.ai.fh-erfurt.de/java2-team1-faculties/faculties-service/-/wikis/1.-Intro
+- https://git.ai.fh-erfurt.de/java2-team1-faculties/faculties-service/-/wikis/2.-Architecture
+- https://git.ai.fh-erfurt.de/java2-team1-faculties/faculties-service/-/wikis/3.-Web-Server-REST-Endpoints
