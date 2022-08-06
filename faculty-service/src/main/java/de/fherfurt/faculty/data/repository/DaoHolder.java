@@ -17,7 +17,7 @@ public class DaoHolder {
     private EntityManager em;
     private GenericDao<Course> courseDao;
     private GenericDao<Module> moduleDao;
-    private final GenericDao<Faculty> facultyDao;
+    private GenericDao<Faculty> facultyDao;
     private GenericDao<University> universityDao;
 
 

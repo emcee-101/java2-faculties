@@ -1,17 +1,12 @@
 package de.fherfurt.faculty.data.repository.core;
 
 import com.sun.istack.Nullable;
-import de.fherfurt.faculty.data.classes.Module;
-import de.fherfurt.faculty.data.classes.University;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 public class GenericDao <T>{
 
