@@ -1,7 +1,6 @@
 package de.fherfurt.faculty;
 
 import de.fherfurt.faculty.data.repository.*;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -100,7 +99,7 @@ class FacultyFunctionsTest {
         long givenFacultyId = facultyData.getId();
 
         // WHEN
-        String testResult1 = FacultyFunctions.outputDeanByFaculty(givenFacultyId);
+        String testResult1 = FacultyFunctions.findDeanByFacultyId(givenFacultyId);
 
         // THEN
         assertSame(testResult1, givenDeanName);
