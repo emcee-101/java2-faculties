@@ -8,7 +8,6 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -18,7 +17,7 @@ public class ModuleResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Module> getAllUniversities(){
+    public List<Module> getAllModule(){
         List<Module> modules = (List<Module>) DaoHolder.getInstance().getModuleDao().findAll();
 
         if( modules != null )
@@ -54,7 +53,6 @@ public class ModuleResource {
     @Path("/delete-by-id/{module-id:\\d+}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteModuleById( @PathParam("module-id") long moduleId){
-        TestData newTestData = new TestData();
 
         Module deletedModule = DaoHolder.getInstance().getModuleDao().delete(moduleId);
 
@@ -79,35 +77,15 @@ public class ModuleResource {
     @GET
     @Path("/filter-modules-by-semester-and-course/{course-id}/{semester-number}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response filterModulesBySemesterAndCourse(
+    public List<Module> filterModulesBySemesterAndCourse(
             @PathParam( "course-id" ) String courseID,
             @PathParam("semester-number") int semesterNumber){
-        Collection<Module> foundModulesByCourseIds = DaoHolder.getInstance().getModuleDao().findAllByJoinFilter(
-                "course",
-                "id",
-                courseID,
-                null,
-                null
-        );
 
-        Collection<Module> foundModulesBySemester = DaoHolder.getInstance().getModuleDao().findAllByFilter(
-                "semester",
-                Integer.toString(semesterNumber)
-        );
+        List<Module> foundModules = ModuleFunctions.filterModulesBySemesterAndCourse(courseID, semesterNumber);
 
-        if (foundModulesByCourseIds == null || foundModulesBySemester == null) {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-        }
-
-        List<Module> foundModules = new ArrayList<>();
-
-        for (Module m: foundModulesByCourseIds) {
-            if (foundModulesBySemester.contains(m)) {
-                foundModules.add(m);
-            }
-        }
-
-        return Response.ok(foundModules).build();
+        if( foundModules != null )
+            return foundModules;
+        else return new ArrayList<Module>();
     }
 
     @PUT

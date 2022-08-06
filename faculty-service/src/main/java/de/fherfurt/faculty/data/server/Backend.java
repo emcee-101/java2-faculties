@@ -17,6 +17,8 @@ import static de.fherfurt.faculty.data.server.resources.TestData.getTestData;
 public class Backend {
     public static final String Base_URL = "http://localhost:10000/";
 
+    public static final Boolean useTestData = true;
+
     /**
      * Configure the server and starts it
      */
