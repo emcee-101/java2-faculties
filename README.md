@@ -57,6 +57,6 @@ For Diagrams and more Infos, please read the PDF Document for our Documentation 
 
 - [PDF](https://git.ai.fh-erfurt.de/java2-team1-faculties/faculties-service/-/blob/main/doc/Dokumentation-1.pdf "PDF Version of Documentation")
 
-- https://git.ai.fh-erfurt.de/java2-team1-faculties/faculties-service/-/wikis/1.-Intro
-- https://git.ai.fh-erfurt.de/java2-team1-faculties/faculties-service/-/wikis/2.-Architecture
-- https://git.ai.fh-erfurt.de/java2-team1-faculties/faculties-service/-/wikis/3.-Web-Server-REST-Endpoints
+- [Introduction in WIKI (1/3)](https://git.ai.fh-erfurt.de/java2-team1-faculties/faculties-service/-/wikis/1.-Intro)
+- [Architecture in WIKI (2/3)](https://git.ai.fh-erfurt.de/java2-team1-faculties/faculties-service/-/wikis/2.-Architecture)
+- [Server in WIKI (3/3)](https://git.ai.fh-erfurt.de/java2-team1-faculties/faculties-service/-/wikis/3.-Web-Server-REST-Endpoints)
