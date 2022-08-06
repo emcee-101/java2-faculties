@@ -1,9 +1,11 @@
 package de.fherfurt.faculty.data.classes;
 
-
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Entity-Class for Faculty
+ */
 @Entity
 @Table(name = "faculty")
 public class Faculty {
@@ -11,20 +13,6 @@ public class Faculty {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    public Faculty() {
-
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Faculty(String deanName, String name, University university) {
-        this.name = name;
-        this.deanName = deanName;
-        this.university=university;
-    }
 
     private String deanName;
     private String name;
@@ -35,6 +23,26 @@ public class Faculty {
     @ManyToOne
     private University university;
 
+    /**
+     * Class Constructor
+     */
+    public Faculty() {}
+
+    /**
+     * Class Constructor to generate Faculty with Values
+     */
+    public Faculty(String deanName,
+                   String name,
+                   University university) {
+        this.name = name;
+        this.deanName = deanName;
+        this.university=university;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -42,7 +50,6 @@ public class Faculty {
     public void setName(String name) {
         this.name = name;
     }
-
 
     public String getDeanName() {
         return deanName;

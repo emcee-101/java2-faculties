@@ -1,44 +1,48 @@
 package de.fherfurt.faculty.data.classes;
 
-
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Entity-Class for University
+ */
 @Entity
 @Table(name = "university")
 public class University {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    public University() {
+    private String name;
+    private String presidentName;
 
+    @OneToMany( mappedBy = "university")
+    private List<Faculty> faculties;
+
+    /**
+     * Class Constructor
+     */
+    public University() {}
+
+    /**
+     * Class Constructor to generate University with Values
+     */
+    public University(String name, String presidentName){
+        this.name = name;
+        this.presidentName=presidentName;
     }
 
     public Long getId() {
         return id;
     }
 
-    private String presidentName;
-    private String name;
-
-    @OneToMany( mappedBy = "university")
-    private List<Faculty> faculties;
-
-
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
-    }
-
-
-    public University(String name, String presidentName){
-        this.name = name;
-        this.presidentName=presidentName;
     }
 
     public String getPresidentName() {

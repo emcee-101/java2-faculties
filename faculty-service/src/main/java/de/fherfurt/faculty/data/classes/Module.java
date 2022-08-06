@@ -1,18 +1,61 @@
 package de.fherfurt.faculty.data.classes;
 
-
 import de.fherfurt.faculty.data.classes.enums.ModuleCertificationType;
 import de.fherfurt.faculty.data.classes.enums.ModuleType;
 
 import javax.persistence.*;
 import java.util.*;
 
-
-
+/**
+ * Entity-Class for Module
+ */
 @Entity
 @Table(name = "module")
 public class Module implements Comparable<Module>{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String name;
+    private int semester;
+    private String professorNames;
+    private ModuleType typeOfModule;
+    private String urlDescriptionDocument;
+    private ModuleCertificationType typeOfCertification;
+
+    @ManyToMany( mappedBy = "modules")
+    private List<Course> courses;
+
+    /**
+     * Class Constructor
+     */
+    public Module() {}
+
+    /**
+     * Class Constructor to generate Module with Values
+     */
+    public Module(String name,
+                  int semester,
+                  String professorNames,
+                  ModuleType typeOfModule,
+                  String urlDescriptionDocument,
+                  ModuleCertificationType typeOfCertification,
+                  List<Course> courses){
+        this.name = name;
+        this.semester = semester;
+        this.professorNames = professorNames;
+        this.typeOfModule = typeOfModule;
+        this.urlDescriptionDocument = urlDescriptionDocument;
+        this.typeOfCertification = typeOfCertification;
+        this.courses = courses;
+    };
+
+    /**
+     * Compares two Modules comparing the IDs
+     *
+     * @param arg0  Module to Compare
+     */
     @Override
     public int compareTo(Module arg0) {
 
@@ -28,70 +71,9 @@ public class Module implements Comparable<Module>{
         return returnVal;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    public Module() {
-
-    }
-
-
-    public Long getId() {
-        return id;
-    }
-
-
-    private int semester;
-    private String professorNames;
-    private ModuleType typeOfModule;
-    private String urlDescriptionDocument;
-    private ModuleCertificationType typeOfCertification;
-    private String name;
-
-    @ManyToMany( mappedBy = "modules")
-    private List<Course> courses;
-
-
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-
-    public Module(String name,
-                  int semester,
-                  String professorNames,
-                  ModuleType typeOfModule,
-                  String urlDescriptionDocument,
-                  ModuleCertificationType typeOfCertification,
-                  List<Course> courses){
-
-        this.name = name;
-        this.semester = semester;
-        this.professorNames = professorNames;
-        this.typeOfModule = typeOfModule;
-        this.urlDescriptionDocument = urlDescriptionDocument;
-        this.typeOfCertification = typeOfCertification;
-        this.courses = courses;
-
-    };
-
-    public int getSemester() {
-        return semester;
-    }
-
-    public void setSemester(int semester) {
-        this.semester = semester;
-    }
-
-    public String getProfessorNames() {
-        return professorNames;
-    }
-
+    /**
+     * Returns the ProfessorNames as a List of Strings
+     */
     public List<String> getProfessorNamesAsList() {
 
         String temp = this.professorNames;
@@ -104,11 +86,11 @@ public class Module implements Comparable<Module>{
         return professors;
     }
 
-
-    public void setProfessorNames(String professorNames) {
-        this.professorNames = professorNames;
-    }
-
+    /**
+     * Adds a new ProfessorName to the ProfessorNames of the Faculty
+     *
+     * @param professorName  ProfessorName to add
+     */
     public void addProfessorName(String professorName) {
 
         String temp = this.professorNames;
@@ -126,6 +108,11 @@ public class Module implements Comparable<Module>{
 
     }
 
+    /**
+     * Removes a ProfessorName from ProfessorNames of the Faculty
+     *
+     * @param professorName ProfessorName to remove
+     */
     public void removeProfessorName(String professorName){
 
         String temp = this.professorNames;
@@ -133,6 +120,34 @@ public class Module implements Comparable<Module>{
         temp = temp.replace(professorName+",", "");
 
         this.professorNames = temp;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getSemester() {
+        return semester;
+    }
+
+    public void setSemester(int semester) {
+        this.semester = semester;
+    }
+
+    public String getProfessorNames() {
+        return professorNames;
+    }
+
+    public void setProfessorNames(String professorNames) {
+        this.professorNames = professorNames;
     }
 
     public ModuleType getTypeOfModule() {
@@ -158,7 +173,6 @@ public class Module implements Comparable<Module>{
     public void setTypeOfCertification(ModuleCertificationType typeOfCertification) {
         this.typeOfCertification = typeOfCertification;
     }
-
 
     public List<Course> getCourses() {
         return courses;
